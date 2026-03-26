@@ -125,7 +125,7 @@ const PKG={
 "ziti":{sizes:[16],unit:"oz",prices:[0.99]},
 "egg noodles":{sizes:[12],unit:"oz",prices:[1.79]},
 "white rice, cooked":{sizes:[1],unit:"cup",prices:[0.50]},
-"marinara sauce":{sizes:[3],unit:"cup",prices:[1.99]},
+"marinara sauce":{sizes:[3],unit:"cup",displayUnit:"jar",prices:[1.99]},
 "crushed tomatoes (28oz can)":{sizes:[1],unit:"can",prices:[1.49]},
 "diced tomatoes (14oz can)":{sizes:[1],unit:"can",prices:[0.85]},
 "tomato paste":{sizes:[1],unit:"can",prices:[0.69]},
@@ -134,24 +134,24 @@ const PKG={
 "corn (frozen or canned)":{sizes:[1],unit:"can",prices:[0.85]},
 "chicken broth":{sizes:[4],unit:"cup",prices:[1.49]},
 "beef broth":{sizes:[4],unit:"cup",prices:[1.49]},
-"salsa":{sizes:[2],unit:"cup",prices:[2.49]},
-"BBQ sauce":{sizes:[2],unit:"cup",prices:[1.99]},
-"basil pesto":{sizes:[1],unit:"cup",prices:[3.49]},
-"Italian dressing":{sizes:[2],unit:"cup",prices:[1.99]},
-"Caesar dressing":{sizes:[1],unit:"cup",prices:[2.49]},
-"olive oil":{sizes:[1],unit:"bottle",prices:[4.49]},
-"minced garlic":{sizes:[1],unit:"jar",prices:[1.99]},
-"taco seasoning":{sizes:[1],unit:"packet",prices:[0.69]},
-"Kinder's seasoning":{sizes:[1],unit:"bottle",prices:[4.99]},
-"honey":{sizes:[1],unit:"bottle",prices:[4.99]},
-"soy sauce":{sizes:[1],unit:"bottle",prices:[1.49]},
-"all-purpose flour":{sizes:[1],unit:"bag",prices:[2.29]},
-"old-fashioned oats":{sizes:[1],unit:"canister",prices:[2.99]},
-"sugar":{sizes:[1],unit:"bag",prices:[2.79]},
+"salsa":{sizes:[2],unit:"cup",displayUnit:"jar",prices:[2.49]},
+"BBQ sauce":{sizes:[2],unit:"cup",displayUnit:"bottle",prices:[1.99]},
+"basil pesto":{sizes:[1],unit:"cup",displayUnit:"jar",prices:[3.49]},
+"Italian dressing":{sizes:[2],unit:"cup",displayUnit:"bottle",prices:[1.99]},
+"Caesar dressing":{sizes:[1],unit:"cup",displayUnit:"bottle",prices:[2.49]},
+"olive oil":{sizes:[1],unit:"bottle",prices:[4.49],pantry:true},
+"minced garlic":{sizes:[1],unit:"jar",prices:[1.99],pantry:true},
+"taco seasoning":{sizes:[1],unit:"packet",prices:[0.69],pantry:true},
+"Kinder's seasoning":{sizes:[1],unit:"bottle",prices:[4.99],pantry:true},
+"honey":{sizes:[1],unit:"bottle",prices:[4.99],pantry:true},
+"soy sauce":{sizes:[1],unit:"bottle",prices:[1.49],pantry:true},
+"all-purpose flour":{sizes:[1],unit:"bag",prices:[2.29],pantry:true},
+"old-fashioned oats":{sizes:[1],unit:"canister",prices:[2.99],pantry:true},
+"sugar":{sizes:[1],unit:"bag",prices:[2.79],pantry:true},
 "chocolate chips":{sizes:[1],unit:"bag",prices:[2.29]},
 "mini chocolate chips":{sizes:[1],unit:"bag",prices:[2.29]},
-"breadcrumbs (plain or Italian)":{sizes:[1],unit:"can",prices:[1.79]},
-"Italian breadcrumbs":{sizes:[1],unit:"can",prices:[1.79]},
+"breadcrumbs (plain or Italian)":{sizes:[1],unit:"can",prices:[1.79],pantry:true},
+"Italian breadcrumbs":{sizes:[1],unit:"can",prices:[1.79],pantry:true},
 // Produce (per count)
 "banana":{sizes:[1],unit:"piece",prices:[0.25]},
 "cherry tomatoes":{sizes:[1],unit:"pint",prices:[2.49]},
@@ -179,32 +179,32 @@ const PKG={
 "vanilla protein powder":{sizes:[30],unit:"scoop",prices:[24.99]},
 // Condiments & pantry liquids
 "tzatziki sauce":{sizes:[1],unit:"tub",prices:[2.99]},
-"maple syrup":{sizes:[1],unit:"bottle",prices:[3.99]},
-"sesame oil":{sizes:[1],unit:"bottle",prices:[2.99]},
-"coconut oil, melted":{sizes:[1],unit:"jar",prices:[3.99]},
-"apple cider vinegar":{sizes:[1],unit:"bottle",prices:[1.99]},
-"Worcestershire sauce":{sizes:[1],unit:"bottle",prices:[1.99]},
+"maple syrup":{sizes:[1],unit:"bottle",prices:[3.99],pantry:true},
+"sesame oil":{sizes:[1],unit:"bottle",prices:[2.99],pantry:true},
+"coconut oil, melted":{sizes:[1],unit:"jar",prices:[3.99],pantry:true},
+"apple cider vinegar":{sizes:[1],unit:"bottle",prices:[1.99],pantry:true},
+"Worcestershire sauce":{sizes:[1],unit:"bottle",prices:[1.99],pantry:true},
 "black olives, sliced":{sizes:[1],unit:"can",prices:[1.29]},
 "green olives, sliced":{sizes:[1],unit:"jar",prices:[1.79]},
-"lime juice":{sizes:[1],unit:"bottle",prices:[1.49]},
-"lemon juice":{sizes:[1],unit:"bottle",prices:[1.49]},
-"peanut butter (optional)":{sizes:[1],unit:"jar",prices:[2.99]},
+"lime juice":{sizes:[1],unit:"bottle",prices:[1.49],pantry:true},
+"lemon juice":{sizes:[1],unit:"bottle",prices:[1.49],pantry:true},
+"peanut butter (optional)":{sizes:[1],unit:"jar",prices:[2.99],pantry:true},
 // Baking & dry goods
-"baking powder":{sizes:[100],unit:"tsp",prices:[1.49]},
-"baking soda":{sizes:[100],unit:"tsp",prices:[0.79]},
-"vanilla extract":{sizes:[50],unit:"tsp",prices:[2.99]},
-"cornstarch":{sizes:[48],unit:"tbsp",prices:[1.29]},
-"cocoa powder":{sizes:[24],unit:"tbsp",prices:[2.49]},
-"walnuts, chopped (optional)":{sizes:[1],unit:"bag",prices:[3.49]},
+"baking powder":{sizes:[1],unit:"can",prices:[1.49],pantry:true},
+"baking soda":{sizes:[1],unit:"box",prices:[0.79],pantry:true},
+"vanilla extract":{sizes:[1],unit:"bottle",prices:[2.99],pantry:true},
+"cornstarch":{sizes:[1],unit:"box",prices:[1.29],pantry:true},
+"cocoa powder":{sizes:[1],unit:"can",prices:[2.49],pantry:true},
+"walnuts, chopped (optional)":{sizes:[1],unit:"bag",prices:[3.49],pantry:true},
 // Spices & seasonings
-"garlic powder":{sizes:[50],unit:"tsp",prices:[1.29]},
-"onion powder":{sizes:[50],unit:"tsp",prices:[1.29]},
-"Italian seasoning":{sizes:[50],unit:"tsp",prices:[1.29]},
-"chili powder":{sizes:[24],unit:"tbsp",prices:[1.29]},
-"cumin":{sizes:[50],unit:"tsp",prices:[1.29]},
-"cinnamon":{sizes:[50],unit:"tsp",prices:[1.29]},
-"red pepper flakes":{sizes:[50],unit:"tsp",prices:[1.29]},
-"sesame seeds":{sizes:[24],unit:"tbsp",prices:[1.49]},
+"garlic powder":{sizes:[1],unit:"jar",prices:[1.29],pantry:true},
+"onion powder":{sizes:[1],unit:"jar",prices:[1.29],pantry:true},
+"Italian seasoning":{sizes:[1],unit:"jar",prices:[1.29],pantry:true},
+"chili powder":{sizes:[1],unit:"jar",prices:[1.29],pantry:true},
+"cumin":{sizes:[1],unit:"jar",prices:[1.29],pantry:true},
+"cinnamon":{sizes:[1],unit:"jar",prices:[1.29],pantry:true},
+"red pepper flakes":{sizes:[1],unit:"jar",prices:[1.29],pantry:true},
+"sesame seeds":{sizes:[1],unit:"jar",prices:[1.49],pantry:true},
 // Frozen
 "stir fry vegetables (frozen)":{sizes:[1],unit:"bag",prices:[1.99]},
 };
@@ -214,6 +214,7 @@ const lk=name.toLowerCase();
 let pkg=PKG[name];
 if(!pkg){for(const[k,v]of Object.entries(PKG)){if(lk.includes(k.toLowerCase())){pkg=v;break}}}
 if(!pkg)return{displayAmt:Math.ceil(rawAmount),displayUnit:rawUnit,price:0};
+if(pkg.pantry)return{displayAmt:'1 '+pkg.unit,displayUnit:'',price:pkg.prices[0]};
 // Find smallest package size that fits, or multiple packages
 let needed=rawAmount;
 const sz=pkg.sizes;
@@ -242,8 +243,9 @@ const count=Math.ceil(needed/sz[0]);
 const cost=count*pkg.prices[0];
 const containers=['bottle','jar','bag','can','canister','packet','box','tub','head','bunch','pint','piece'];
 const pl={'bunch':'bunches','piece':'pieces','pint':'pints'};
+const unitName=pkg.displayUnit||pkg.unit;
 let amt;
-if(containers.includes(pkg.unit)){const plural=pl[pkg.unit]||(pkg.unit+'s');amt=(count===1?'1 '+pkg.unit:count+' '+plural);}
+if(containers.includes(unitName)){const plural=pl[unitName]||(unitName+'s');amt=(count===1?'1 '+unitName:count+' '+plural);}
 else{amt=(count>1?count+' \xd7 ':'')+sz[0]+' '+pkg.unit;}
 return{displayAmt:amt,displayUnit:'',price:cost}}}
 
