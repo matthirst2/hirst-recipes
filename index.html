@@ -97,20 +97,21 @@ const PKG={
 "sirloin or ribeye, sliced very thin":{sizes:[1,1.5,2],unit:"lb",prices:[9.99,14.99,19.98]},
 "eggs":{sizes:[12],unit:"large",prices:[3.49]},
 "egg":{sizes:[12],unit:"large",prices:[3.49]},
-"shredded cheddar":{sizes:[2],unit:"cup",prices:[2.49]},
-"shredded mozzarella":{sizes:[2],unit:"cup",prices:[2.49]},
-"parmesan, grated":{sizes:[1],unit:"cup",prices:[3.49]},
-"grated Parmesan":{sizes:[1],unit:"cup",prices:[3.49]},
-"parmesan, shaved":{sizes:[1],unit:"cup",prices:[3.49]},
+"shredded cheddar":{sizes:[2],unit:"cup",displayUnit:"bag",prices:[2.49]},
+"shredded mozzarella":{sizes:[2],unit:"cup",displayUnit:"bag",prices:[2.49]},
+"parmesan, grated":{sizes:[1],unit:"container",prices:[3.49],pantry:true},
+"grated Parmesan":{sizes:[1],unit:"container",prices:[3.49],pantry:true},
+"parmesan, shaved":{sizes:[1],unit:"container",prices:[3.49],pantry:true},
+"parmesan":{sizes:[1],unit:"container",prices:[3.49],pantry:true},
 "American cheese slices":{sizes:[16],unit:"piece",prices:[2.29]},
 "provolone cheese slices":{sizes:[8],unit:"piece",prices:[3.49]},
 "feta cheese block":{sizes:[8],unit:"oz",prices:[3.99]},
-"ricotta cheese":{sizes:[1],unit:"cup",prices:[2.99]},
-"sour cream":{sizes:[1],unit:"cup",prices:[1.69]},
-"heavy cream":{sizes:[1],unit:"cup",prices:[3.29]},
-"butter":{sizes:[8],unit:"tbsp",prices:[3.99]},
-"butter, melted":{sizes:[8],unit:"tbsp",prices:[3.99]},
-"milk":{sizes:[16],unit:"cup",prices:[3.29]},
+"ricotta cheese":{sizes:[2],unit:"cup",displayUnit:"tub",prices:[2.99]},
+"sour cream":{sizes:[2],unit:"cup",displayUnit:"tub",prices:[1.69]},
+"heavy cream":{sizes:[2],unit:"cup",displayUnit:"pint",prices:[3.29]},
+"butter":{sizes:[1],unit:"box",prices:[3.99],pantry:true},
+"butter, melted":{sizes:[1],unit:"box",prices:[3.99],pantry:true},
+"milk":{sizes:[16],unit:"cup",displayUnit:"jug",prices:[3.29]},
 "flour tortillas (10\")":{sizes:[8],unit:"piece",prices:[2.49]},
 "corn tortillas":{sizes:[30],unit:"piece",prices:[1.79]},
 "corn tortillas (small)":{sizes:[30],unit:"piece",prices:[1.79]},
@@ -245,7 +246,7 @@ return{displayAmt:bestQty,displayUnit:'',price:bestPrice}}
 else{
 const count=Math.ceil(needed/sz[0]);
 const cost=count*pkg.prices[0];
-const containers=['bottle','jar','bag','can','canister','packet','box','tub','head','bunch','pint','piece'];
+const containers=['bottle','jar','bag','can','canister','packet','box','tub','head','bunch','pint','piece','container','jug','gallon'];
 const pl={'bunch':'bunches','piece':'pieces','pint':'pints'};
 const unitName=pkg.displayUnit||pkg.unit;
 let amt;
@@ -300,7 +301,7 @@ const R=[
 const CATS=['All','Breakfast','Chicken','Turkey','Steak','Crock Pot','Pasta','No Meat','Desserts','♥ Faves'];
 const CB={Breakfast:'b-breakfast',Chicken:'b-chicken',Turkey:'b-turkey',Steak:'b-steak','Crock Pot':'b-crockpot','No Meat':'b-nomeat',Desserts:'b-desserts',Pasta:'b-pasta'};
 const EMOJI={1:'🥞',2:'🥯',3:'🧁',4:'🧁',5:'🍌',6:'🥚',7:'🌯',8:'🍝',9:'🧀',10:'🥘',11:'🌯',12:'🍯',13:'🍗',14:'🍗',15:'🥙',16:'🍝',17:'🧆',18:'🌮',19:'🍝',20:'🍝',21:'🥬',22:'🍔',23:'🍝',24:'🥩',25:'🌮',26:'🌶️',27:'🥖',28:'🥘',29:'🌮',30:'🌶️',31:'🍗',32:'🧄',33:'🧄',34:'🥗',35:'🧀',36:'🍞',37:'🍫',38:'🍦',39:'🫐'};
-const SM={'Produce':['bell pepper','sweet potato','broccoli','romaine lettuce','butter lettuce','cucumber','cherry tomatoes','minced garlic','garlic cloves','onion','carrots','potatoes','ripe banana','frozen banana','blueberries','strawberries','fresh parsley','fresh basil','fresh cilantro','lime','lemon','fresh rosemary','coleslaw mix','applesauce','unsweetened applesauce'],'Meat & Poultry':['chicken breast','ground turkey','85/15 ground turkey','turkey bacon','chicken breast (pounded thin)','ribeye','sirloin','flank steak','chuck roast'],'Dairy & Eggs':['eggs','egg','shredded cheddar','American cheese','parmesan','grated Parmesan','feta cheese block','provolone cheese','sour cream','butter','milk','heavy cream','ricotta cheese','shredded mozzarella'],'Bread & Bakery':['flour tortillas','corn tortillas','thin bagels','slider buns','hoagie rolls','hamburger buns'],'Pasta & Grains':['penne','protein penne','rotini','protein rotini','egg noodles','white rice','spaghetti','protein spaghetti','fettuccine','protein fettuccine','ziti'],'Canned & Jarred':['black beans','kidney beans','corn','crushed tomatoes','diced tomatoes','tomato paste','chicken broth','beef broth','basil pesto','salsa','Italian dressing','Caesar dressing','tzatziki sauce','BBQ sauce','Worcestershire sauce','marinara sauce','honey','maple syrup','soy sauce','apple cider vinegar','black olives','green olives','peanut butter'],'Pantry & Spices':['all-purpose flour','breadcrumbs','Italian breadcrumbs','old-fashioned oats','protein powder','chocolate protein powder','vanilla protein powder','cornstarch','sugar','cocoa powder','baking soda','baking powder','chocolate chips','mini chocolate chips','walnuts','olive oil','sesame oil','coconut oil','cooking spray','vanilla extract','taco seasoning','Italian seasoning',"Kinder's seasoning",'garlic powder','onion powder','chili powder','cumin','cinnamon','red pepper flakes','sesame seeds'],'Frozen':['stir fry vegetables']};
+const SM={'Produce':['bell pepper','sweet potato','broccoli','romaine lettuce','butter lettuce','cucumber','cherry tomatoes','minced garlic','garlic cloves','onion','carrots','potatoes','ripe banana','frozen banana','banana','blueberries','strawberries','fresh parsley','fresh basil','fresh cilantro','lime','lemon','fresh rosemary','coleslaw mix','applesauce','unsweetened applesauce','apples','avocado','grapes','orange juice'],'Meat & Poultry':['chicken breast','ground turkey','85/15 ground turkey','turkey bacon','chicken breast (pounded thin)','ribeye','sirloin','flank steak','chuck roast','chicken nuggets','lunch meat'],'Dairy & Eggs':['eggs','egg','shredded cheddar','American cheese','parmesan','grated Parmesan','feta cheese block','provolone cheese','sour cream','butter','milk','heavy cream','ricotta cheese','shredded mozzarella','yogurt','string cheese','cheese slices','cottage cheese'],'Bread & Bakery':['flour tortillas','corn tortillas','thin bagels','slider buns','hoagie rolls','hamburger buns','bread'],'Pasta & Grains':['penne','protein penne','rotini','protein rotini','egg noodles','white rice','spaghetti','protein spaghetti','fettuccine','protein fettuccine','ziti'],'Canned & Jarred':['black beans','kidney beans','corn','crushed tomatoes','diced tomatoes','tomato paste','chicken broth','beef broth','basil pesto','salsa','Italian dressing','Caesar dressing','tzatziki sauce','BBQ sauce','Worcestershire sauce','marinara sauce','honey','maple syrup','soy sauce','apple cider vinegar','black olives','green olives','peanut butter'],'Pantry & Spices':['all-purpose flour','breadcrumbs','Italian breadcrumbs','old-fashioned oats','protein powder','chocolate protein powder','vanilla protein powder','cornstarch','sugar','cocoa powder','baking soda','baking powder','chocolate chips','mini chocolate chips','walnuts','olive oil','sesame oil','coconut oil','cooking spray','vanilla extract','taco seasoning','Italian seasoning',"Kinder's seasoning",'garlic powder','onion powder','chili powder','cumin','cinnamon','red pepper flakes','sesame seeds','cereal','crackers','tortilla chips','sparkling water','snacks','juice'],'Frozen':['stir fry vegetables']};
 function gS(n){const l=n.toLowerCase();for(const[s,i]of Object.entries(SM))for(const x of i)if(l.includes(x.toLowerCase())||x.toLowerCase().includes(l))return s;return'Other'}
 
 let cv='list',ac='All',ss=new Set(),slv='sec',fv=JSON.parse(localStorage.getItem('rb_fav')||'[]'),searchQ='',customItems=[],haveItems=new Set();
@@ -364,7 +365,7 @@ const m={};
 for(const id of ss){const r=R.find(x=>x.id===id);for(const i of r.ingredients){
 if(i[0]==='PASTA'){const p=r.dp?r.pp:r.rp;if(p){const k=p[0].toLowerCase();if(!m[k])m[k]={name:p[0],amount:0,unit:p[2]};m[k].amount+=p[1]}continue}
 if(['salt & pepper','cooking spray','salt','black pepper'].includes(i[0]))continue;
-const k=i[0].toLowerCase().replace(/,.*$/,'').trim();const dn=k.replace(/^(ripe |fresh |frozen |mashed |diced |sliced |chopped |cooked )/,'').replace(/^./,c=>c.toUpperCase());if(!m[k])m[k]={name:dn,amount:0,unit:i[2]};m[k].amount+=i[1]}}
+const kRaw=i[0].toLowerCase().replace(/,.*$/,'').trim();const KEY_NORM={'bell peppers':'bell pepper','egg':'eggs','grated parmesan':'parmesan','shaved parmesan':'parmesan'};const k=KEY_NORM[kRaw]||kRaw;const dn=k.replace(/^(ripe |fresh |frozen |mashed |diced |sliced |chopped |cooked |grated |shaved )/,'').replace(/^./,c=>c.toUpperCase());if(!m[k])m[k]={name:dn,amount:0,unit:i[2]};m[k].amount+=i[1]}}
 // Apply store rounding and pricing
 window._shopData=Object.values(m).map(item=>{
 const rounded=roundToStore(item.name,item.amount,item.unit);
