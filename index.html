@@ -300,7 +300,7 @@ let cv='list',ac='All',ss=new Set(),slv='sec',fv=JSON.parse(localStorage.getItem
 document.getElementById('recipeCt').textContent=R.length+' recipes';
 
 function fmtTime(m){if(m>=60){const h=Math.floor(m/60);const rm=m%60;return rm>0?h+'h '+rm+'m':h+'h'}return m+'m'}
-function getRecipeCost(r){let c=0;for(const i of r.ingredients){if(i[0]==='PASTA'){const pa=r.rp;if(pa){const p=roundToStore(pa[0],pa[1],pa[2]);c+=p.price}continue}if(['salt & pepper','cooking spray','salt','black pepper'].includes(i[0]))continue;const p=roundToStore(i[0],i[1],i[2]);c+=p.price}return Math.round(c*100)/100}
+function getRecipeCost(r){let c=0;for(const i of r.ingredients){if(i[0]==='PASTA'){const pa=r.dp?r.pp:r.rp;if(pa){const p=roundToStore(pa[0],pa[1],pa[2]);c+=p.price}continue}if(['salt & pepper','cooking spray','salt','black pepper'].includes(i[0]))continue;const p=roundToStore(i[0],i[1],i[2]);c+=p.price}return Math.round(c*100)/100}
 
 function getFiltered(){let list=ac==='♥ Faves'?R.filter(r=>fv.includes(r.id)):ac==='All'?R:R.filter(r=>r.cats.includes(ac));if(searchQ){const q=searchQ.toLowerCase();list=list.filter(r=>r.name.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)||r.ingredients.some(i=>i[0].toLowerCase().includes(q)))}return list}
 
@@ -355,7 +355,7 @@ function tS(id){if(ss.has(id))ss.delete(id);else ss.add(id);rSL()}
 function genList(){
 const m={};
 for(const id of ss){const r=R.find(x=>x.id===id);for(const i of r.ingredients){
-if(i[0]==='PASTA'){const p=r.rp;if(p){const k=p[0].toLowerCase();if(!m[k])m[k]={name:p[0],amount:0,unit:p[2]};m[k].amount+=p[1]}continue}
+if(i[0]==='PASTA'){const p=r.dp?r.pp:r.rp;if(p){const k=p[0].toLowerCase();if(!m[k])m[k]={name:p[0],amount:0,unit:p[2]};m[k].amount+=p[1]}continue}
 if(['salt & pepper','cooking spray','salt','black pepper'].includes(i[0]))continue;
 const k=i[0].toLowerCase().replace(/,.*$/,'').trim();if(!m[k])m[k]={name:i[0],amount:0,unit:i[2]};m[k].amount+=i[1]}}
 // Apply store rounding and pricing
