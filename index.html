@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#2d5016" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+<title>Hirst Family Recipes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f5f0e8;--bg-card:#fff;--bg-card-hover:#fafaf6;--text:#2a2a2a;--text-sec:#6b6b6b;--text-muted:#999;--accent:#2d5016;--accent-light:#e8f0e0;--accent-hover:#3d6b20;--border:#e0dbd2;--border-lt:#ece8e0;--shadow:rgba(0,0,0,.06);--shadow-md:rgba(0,0,0,.1);--b-bk:#d4740a;--b-bk-bg:#fef3e2;--b-ch:#1a7a5c;--b-ch-bg:#e6f5ef;--b-tu:#8b2252;--b-tu-bg:#fce8f0;--b-st:#7a4a0a;--b-st-bg:#faf0e0;--b-cp:#3a5ba0;--b-cp-bg:#e8eef8;--b-nm:#6b6b6b;--b-nm-bg:#f0f0f0;--b-ds:#9b4dca;--b-ds-bg:#f5eafc;--b-pa:#c4760a;--b-pa-bg:#fff5e6;--tog-bg:#ddd;--tog-on:#2d5016;--sl-tr:#ddd;--sl-th:#2d5016;--m-cal:#e8913a;--m-pro:#3a8a5c;--m-carb:#5a7abf;--m-fat:#c4584a}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--bg-card:#1e1e1e;--bg-card-hover:#252525;--text:#e8e4dc;--text-sec:#a0a0a0;--text-muted:#707070;--accent:#7ab85e;--accent-light:#1e2e16;--accent-hover:#8ec872;--border:#333;--border-lt:#2a2a2a;--shadow:rgba(0,0,0,.2);--shadow-md:rgba(0,0,0,.3);--b-bk-bg:#3a2a10;--b-ch-bg:#102a20;--b-tu-bg:#2a1020;--b-st-bg:#2a2010;--b-cp-bg:#101a2a;--b-nm-bg:#2a2a2a;--b-ds-bg:#2a1a30;--b-pa-bg:#2a2010;--tog-bg:#444;--sl-tr:#444}}
+html{font-size:16px}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.hdr{background:var(--accent);color:#fff;padding:18px 16px 14px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px var(--shadow-md)}.hdr h1{font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400}.hdr .sub{font-size:.78rem;opacity:.8;margin-top:2px}
+.hdr-acts{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}.hdr-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 14px;border-radius:20px;font-size:.78rem;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:background .2s}.hdr-btn:hover{background:rgba(255,255,255,.25)}.hdr-btn.active{background:rgba(255,255,255,.3);border-color:#fff}
+.back-btn{position:absolute;left:12px;top:18px;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;padding:4px 8px;display:none}
+.search-wrap{padding:12px 16px 0;max-width:600px;margin:0 auto;position:relative}.search-input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--bg-card);color:var(--text);outline:none}.search-input:focus{border-color:var(--accent)}.search-icon{position:absolute;left:30px;top:24px;font-size:.9rem;opacity:.4}
+.tabs{display:flex;gap:0;padding:0 8px;background:var(--bg);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{padding:11px 10px;font-size:.76rem;font-weight:500;color:var(--text-sec);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;font-family:'DM Sans',sans-serif}.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.grid{padding:12px 16px 80px;display:flex;flex-direction:column;gap:12px;max-width:600px;margin:0 auto}
+.card{background:var(--bg-card);border:1px solid var(--border-lt);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .2s;box-shadow:0 1px 3px var(--shadow);position:relative}.card:hover{background:var(--bg-card-hover);transform:translateY(-1px)}.card:active{transform:translateY(0)}
+.badge{display:inline-block;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;margin-bottom:3px;margin-right:3px}
+.b-breakfast{color:var(--b-bk);background:var(--b-bk-bg)}.b-chicken{color:var(--b-ch);background:var(--b-ch-bg)}.b-turkey{color:var(--b-tu);background:var(--b-tu-bg)}.b-steak{color:var(--b-st);background:var(--b-st-bg)}.b-crockpot{color:var(--b-cp);background:var(--b-cp-bg)}.b-nomeat{color:var(--b-nm);background:var(--b-nm-bg)}.b-desserts{color:var(--b-ds);background:var(--b-ds-bg)}.b-pasta{color:var(--b-pa);background:var(--b-pa-bg)}
+.card-badges{margin-bottom:4px}
+.card-inner{display:flex;gap:12px;align-items:flex-start}.card-icon{font-size:2rem;line-height:1;flex-shrink:0;margin-top:2px}.card-content{flex:1;min-width:0}
+.card-t{font-family:'DM Serif Display',serif;font-size:1.08rem;margin-bottom:3px}.card-d{font-size:.8rem;color:var(--text-sec);line-height:1.4}
+.card-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center}.card-time{font-size:.7rem;color:var(--text-muted)}.card-cost{font-size:.7rem;color:var(--accent);font-weight:600}
+.card-m{display:flex;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-lt);flex-wrap:wrap}.mp{font-size:.7rem;font-weight:600}.mp span{font-weight:400}
+.fav{position:absolute;top:10px;right:10px;background:none;border:none;font-size:1.1rem;cursor:pointer;opacity:.3;transition:all .2s;padding:4px}.fav.on{opacity:1}
+.detail-icon{font-size:2.8rem;margin-bottom:6px}
+.detail{display:none;max-width:600px;margin:0 auto;padding:16px;padding-bottom:80px}
+.dt{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:4px}.dd{color:var(--text-sec);font-size:.88rem;margin-bottom:8px;line-height:1.5}
+.detail-meta{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}.dm-item{font-size:.82rem;color:var(--text-sec);display:flex;align-items:center;gap:4px}.dm-item strong{color:var(--text)}.dm-cost{font-size:.88rem;color:var(--accent);font-weight:700}
+.srv{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}.srv-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.srv-top span{font-weight:600;font-size:.88rem}.srv-ct{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--accent)}
+.srv-btns{display:flex;gap:8px;margin-bottom:10px}.srv-qb{padding:6px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text)}.srv-qb.act{background:var(--accent);color:#fff;border-color:var(--accent)}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--sl-tr);outline:none}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--sl-th);cursor:pointer}input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--sl-th);cursor:pointer;border:none}
+.ptog{display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:16px}.ptog label{font-size:.85rem;font-weight:500;flex:1}.tsw{position:relative;width:48px;height:26px;cursor:pointer}.tsw input{display:none}.tsl{position:absolute;inset:0;background:var(--tog-bg);border-radius:13px;transition:.3s}.tsl::before{content:'';position:absolute;width:20px;height:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}.tsw input:checked+.tsl{background:var(--tog-on)}.tsw input:checked+.tsl::before{transform:translateX(22px)}.ptl{font-size:.8rem;font-weight:600;color:var(--accent);min-width:55px;text-align:right}
+.stit{font-family:'DM Serif Display',serif;font-size:1.12rem;margin-bottom:12px;margin-top:8px}
+.mtw{overflow-x:auto;border:1px solid var(--border);border-radius:12px;margin-bottom:16px}.mt{width:100%;border-collapse:collapse;font-size:.76rem}.mt th{background:var(--accent-light);padding:9px 7px;text-align:left;font-weight:600;font-size:.7rem;text-transform:uppercase;color:var(--text-sec);white-space:nowrap}.mt td{padding:7px;border-top:1px solid var(--border-lt)}.mt .in{font-weight:500;min-width:100px}.mt .am{color:var(--text-sec);white-space:nowrap}.mt .cal{color:var(--m-cal);font-weight:600}.mt .pro{color:var(--m-pro);font-weight:600}.mt .carb{color:var(--m-carb);font-weight:600}.mt .fat{color:var(--m-fat);font-weight:600}.trow{background:var(--accent-light)}.trow td{font-weight:700;border-top:2px solid var(--border)!important}
+.steps{list-style:none;counter-reset:step;margin-bottom:16px}.steps li{counter-increment:step;padding:12px 12px 12px 48px;position:relative;border-bottom:1px solid var(--border-lt);font-size:.86rem;line-height:1.6}.steps li:last-child{border-bottom:none}.steps li::before{content:counter(step);position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700}.stt{font-weight:600;display:block;margin-bottom:4px}
+.notes{background:var(--accent-light);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}.notes p{font-size:.85rem;line-height:1.5;color:var(--text-sec)}
+.macbox{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}.macbox>div{flex:1;min-width:65px;text-align:center;padding:10px 4px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px}.macbox .mv{font-size:1.1rem;font-weight:700}.macbox .ml{font-size:.66rem;color:var(--text-sec)}
+.shopv{display:none;max-width:600px;margin:0 auto;padding:16px;padding-bottom:80px}
+.sri{display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border-lt);border-radius:10px;padding:11px 14px;cursor:pointer;transition:all .2s;margin-bottom:6px}.sri:hover{background:var(--bg-card-hover)}.sri.sel{border-color:var(--accent);background:var(--accent-light)}.sch{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem}.sri.sel .sch{background:var(--accent);border-color:var(--accent);color:#fff}.srn{font-size:.85rem;font-weight:500;flex:1}
+.glb{width:100%;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:12px;font-size:.9rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin:12px 0}.glb:disabled{opacity:.5;cursor:not-allowed}
+.shres{display:none}
+.ltog{display:flex;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px}.ltb{flex:1;padding:8px;font-size:.76rem;font-weight:500;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--text-sec)}.ltb.act{background:var(--accent);color:#fff}
+.shsec h3{font-family:'DM Serif Display',serif;font-size:.92rem;margin:14px 0 6px;color:var(--accent)}
+.shi{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border-lt);font-size:.82rem}.shi:last-child{border-bottom:none}
+.shi-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s}
+.shi-check.have{background:var(--accent);border-color:var(--accent);color:#fff}
+.shi-text{flex:1}.shi-text.have-text{text-decoration:line-through;color:var(--text-muted)}
+.shi-price{font-size:.75rem;font-weight:600;color:var(--accent);white-space:nowrap;min-width:45px;text-align:right}
+.shi-price.have-price{color:var(--text-muted);text-decoration:line-through}
+.cpb{width:100%;background:var(--accent);color:#fff;border:none;padding:12px;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}.cpb:hover{background:var(--accent-hover)}
+.cpb-float{position:sticky;bottom:16px;z-index:50;box-shadow:0 4px 12px var(--shadow-md)}
+.shop-total{text-align:center;padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;margin:12px 0}
+.shop-total .total-label{font-size:.82rem;color:var(--text-sec)}.shop-total .total-val{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent)}
+.add-item-wrap{display:flex;gap:8px;margin:12px 0}.add-item-input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;background:var(--bg-card);color:var(--text);outline:none}.add-item-input:focus{border-color:var(--accent)}.add-item-btn{padding:10px 16px;border:none;background:var(--accent);color:#fff;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.hidden{display:none!important}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.card{animation:fadeIn .25s ease both}
+.shop-cat-hdr{font-family:'DM Serif Display',serif;font-size:.95rem;color:var(--accent);margin:16px 0 6px;padding-bottom:5px;border-bottom:1px solid var(--border-lt)}.shop-cat-hdr:first-child{margin-top:0}
+.no-results{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:.9rem}
+.random-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;padding:20px}.random-overlay.show{display:flex}
+.random-card{background:var(--bg-card);border-radius:16px;padding:24px;max-width:350px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.2);animation:fadeIn .3s ease}
+.random-btns{display:flex;gap:8px;justify-content:center;margin-top:16px}.random-btns button{padding:10px 20px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border:none}
+.rb-go{background:var(--accent);color:#fff}.rb-again{background:var(--bg);color:var(--text);border:1px solid var(--border)!important}
+</style>
+</head>
+<body>
+<header class="hdr"><button class="back-btn" id="backBtn" onclick="goBack()">←</button><h1>Hirst Family Recipes</h1><div class="sub" id="recipeCt"></div><div class="hdr-acts"><button class="hdr-btn" id="shopBtn" onclick="toggleShop()">🛒 Shopping List</button><button class="hdr-btn" onclick="randomRecipe()">🎲 What's for Dinner?</button></div></header>
+<div id="listView"><div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" id="searchInput" type="text" placeholder="Search recipes or ingredients..." oninput="onSearch()"></div><div class="tabs" id="tabs"></div><div class="grid" id="grid"></div></div>
+<div id="detailView" class="detail"></div>
+<div id="shopView" class="shopv"><h2 class="stit">Select Recipes for Shopping List</h2><p style="font-size:.82rem;color:var(--text-sec);margin-bottom:10px">Tap recipes, then generate your combined list.</p><div id="shopSelect"></div><button class="glb" id="genBtn" onclick="genList()" disabled>Generate Shopping List (0 selected)</button><div class="shres" id="shRes"><div class="add-item-wrap"><input class="add-item-input" id="addItemInput" type="text" placeholder="Add item (e.g. toilet paper, toothpaste)..." onkeydown="if(event.key==='Enter')addCustomItem()"><button class="add-item-btn" onclick="addCustomItem()">Add</button></div><div class="ltog"><button class="ltb act" onclick="setLV('sec',this)">By Section</button><button class="ltb" onclick="setLV('alpha',this)">Alphabetical</button></div><div id="shContent"></div><div class="shop-total" id="shopTotal"></div><button class="cpb cpb-float" id="copyBtn" onclick="copyList()">📋 Copy Shopping List</button></div></div>
+<div class="random-overlay" id="randomOverlay" onclick="if(event.target===this)closeRandom()"><div class="random-card" id="randomCard"></div></div>
+<script>
+// ========== STORE PACKAGING MAP ==========
+// [packageSizes (array of common sizes), unit, pricePerPackage]
+// For items sold by weight: sizes in lbs
+// For items sold by count: sizes in count
+// For items sold by volume: sizes in cups/oz
+const PKG={
+"85/15 ground turkey":{sizes:[1,2.5],unit:"lb",prices:[4.49,9.99]},
+"chicken breast":{sizes:[1,2,3],unit:"lb",prices:[2.99,5.98,8.97]},
+"chicken breast (pounded thin)":{sizes:[1,2,3],unit:"lb",prices:[2.99,5.98,8.97]},
+"chicken breast, sliced thin":{sizes:[1,2,3],unit:"lb",prices:[2.99,5.98,8.97]},
+"chuck roast":{sizes:[3],unit:"lb",prices:[17.97]},
+"ribeye steak (1 inch thick)":{sizes:[1],unit:"piece",prices:[12.99]},
+"sirloin or flank steak":{sizes:[1,1.5,2],unit:"lb",prices:[8.99,13.49,17.98]},
+"sirloin or ribeye, sliced very thin":{sizes:[1,1.5,2],unit:"lb",prices:[9.99,14.99,19.98]},
+"eggs":{sizes:[12],unit:"large",prices:[3.49]},
+"egg":{sizes:[12],unit:"large",prices:[3.49]},
+"shredded cheddar":{sizes:[2],unit:"cup",prices:[2.49]},
+"shredded mozzarella":{sizes:[2],unit:"cup",prices:[2.49]},
+"parmesan, grated":{sizes:[1],unit:"cup",prices:[3.49]},
+"grated Parmesan":{sizes:[1],unit:"cup",prices:[3.49]},
+"parmesan, shaved":{sizes:[1],unit:"cup",prices:[3.49]},
+"American cheese slices":{sizes:[16],unit:"piece",prices:[2.29]},
+"provolone cheese slices":{sizes:[8],unit:"piece",prices:[3.49]},
+"feta cheese block":{sizes:[8],unit:"oz",prices:[3.99]},
+"ricotta cheese":{sizes:[1],unit:"cup",prices:[2.99]},
+"sour cream":{sizes:[1],unit:"cup",prices:[1.69]},
+"heavy cream":{sizes:[1],unit:"cup",prices:[3.29]},
+"butter":{sizes:[8],unit:"tbsp",prices:[3.99]},
+"butter, melted":{sizes:[8],unit:"tbsp",prices:[3.99]},
+"milk":{sizes:[16],unit:"cup",prices:[3.29]},
+"flour tortillas (10\")":{sizes:[8],unit:"piece",prices:[2.49]},
+"corn tortillas":{sizes:[30],unit:"piece",prices:[1.79]},
+"corn tortillas (small)":{sizes:[30],unit:"piece",prices:[1.79]},
+"thin bagels":{sizes:[6],unit:"piece",prices:[2.99]},
+"slider buns":{sizes:[12],unit:"piece",prices:[2.49]},
+"hoagie rolls":{sizes:[6],unit:"piece",prices:[2.99]},
+"hamburger buns":{sizes:[8],unit:"piece",prices:[1.89]},
+"penne":{sizes:[16],unit:"oz",prices:[0.99]},
+"protein penne":{sizes:[12],unit:"oz",prices:[2.49]},
+"rotini":{sizes:[16],unit:"oz",prices:[0.99]},
+"protein rotini":{sizes:[12],unit:"oz",prices:[2.49]},
+"spaghetti":{sizes:[16],unit:"oz",prices:[0.99]},
+"protein spaghetti":{sizes:[12],unit:"oz",prices:[2.49]},
+"fettuccine":{sizes:[16],unit:"oz",prices:[0.99]},
+"protein fettuccine":{sizes:[12],unit:"oz",prices:[2.49]},
+"ziti":{sizes:[16],unit:"oz",prices:[0.99]},
+"egg noodles":{sizes:[12],unit:"oz",prices:[1.79]},
+"white rice, cooked":{sizes:[1],unit:"cup",prices:[0.50]},
+"marinara sauce":{sizes:[3],unit:"cup",prices:[1.99]},
+"crushed tomatoes (28oz can)":{sizes:[1],unit:"can",prices:[1.49]},
+"diced tomatoes (14oz can)":{sizes:[1],unit:"can",prices:[0.85]},
+"tomato paste":{sizes:[1],unit:"can",prices:[0.69]},
+"black beans, drained":{sizes:[1],unit:"can",prices:[0.85]},
+"kidney beans, drained":{sizes:[1],unit:"can",prices:[0.85]},
+"corn (frozen or canned)":{sizes:[1],unit:"can",prices:[0.85]},
+"chicken broth":{sizes:[4],unit:"cup",prices:[1.49]},
+"beef broth":{sizes:[4],unit:"cup",prices:[1.49]},
+"salsa":{sizes:[2],unit:"cup",prices:[2.49]},
+"BBQ sauce":{sizes:[2],unit:"cup",prices:[1.99]},
+"basil pesto":{sizes:[1],unit:"cup",prices:[3.49]},
+"Italian dressing":{sizes:[2],unit:"cup",prices:[1.99]},
+"Caesar dressing":{sizes:[1],unit:"cup",prices:[2.49]},
+"olive oil":{sizes:[1],unit:"bottle",prices:[4.49]},
+"minced garlic":{sizes:[1],unit:"jar",prices:[1.99]},
+"taco seasoning":{sizes:[1],unit:"packet",prices:[0.69]},
+"Kinder's seasoning":{sizes:[1],unit:"bottle",prices:[4.99]},
+"honey":{sizes:[1],unit:"bottle",prices:[4.99]},
+"soy sauce":{sizes:[1],unit:"bottle",prices:[1.49]},
+"all-purpose flour":{sizes:[1],unit:"bag",prices:[2.29]},
+"old-fashioned oats":{sizes:[1],unit:"canister",prices:[2.99]},
+"sugar":{sizes:[1],unit:"bag",prices:[2.79]},
+"chocolate chips":{sizes:[1],unit:"bag",prices:[2.29]},
+"mini chocolate chips":{sizes:[1],unit:"bag",prices:[2.29]},
+"breadcrumbs (plain or Italian)":{sizes:[1],unit:"can",prices:[1.79]},
+"Italian breadcrumbs":{sizes:[1],unit:"can",prices:[1.79]},
+// Produce (per count)
+"banana":{sizes:[1],unit:"piece",prices:[0.25]},
+"cherry tomatoes":{sizes:[1],unit:"pint",prices:[2.49]},
+"blueberries":{sizes:[1],unit:"pint",prices:[2.49]},
+"strawberries":{sizes:[1],unit:"lb",prices:[2.99]},
+"broccoli florets":{sizes:[1],unit:"bag",prices:[1.99]},
+"bell pepper":{sizes:[1],unit:"piece",prices:[0.89]},
+"sweet potato":{sizes:[1],unit:"piece",prices:[0.99]},
+"onion":{sizes:[1],unit:"piece",prices:[0.69]},
+"cucumber":{sizes:[1],unit:"piece",prices:[0.79]},
+"romaine lettuce":{sizes:[1],unit:"head",prices:[1.49]},
+"butter lettuce":{sizes:[1],unit:"head",prices:[1.99]},
+"lime":{sizes:[1],unit:"piece",prices:[0.25]},
+"fresh parsley":{sizes:[1],unit:"bunch",prices:[0.79]},
+"fresh basil":{sizes:[1],unit:"bunch",prices:[1.49]},
+"fresh cilantro":{sizes:[1],unit:"bunch",prices:[0.79]},
+"rosemary":{sizes:[1],unit:"bunch",prices:[1.49]},
+"coleslaw mix":{sizes:[1],unit:"bag",prices:[1.49]},
+"carrots":{sizes:[1],unit:"lb",prices:[0.99]},
+"potatoes":{sizes:[5],unit:"lb",prices:[3.49]},
+"garlic cloves, whole":{sizes:[10],unit:"cloves",prices:[0.89]},
+"unsweetened applesauce":{sizes:[1],unit:"jar",prices:[1.49]},
+// Protein powder
+"chocolate protein powder":{sizes:[30],unit:"scoop",prices:[24.99]},
+"vanilla protein powder":{sizes:[30],unit:"scoop",prices:[24.99]},
+// Condiments & pantry liquids
+"tzatziki sauce":{sizes:[1],unit:"tub",prices:[2.99]},
+"maple syrup":{sizes:[1],unit:"bottle",prices:[3.99]},
+"sesame oil":{sizes:[1],unit:"bottle",prices:[2.99]},
+"coconut oil, melted":{sizes:[1],unit:"jar",prices:[3.99]},
+"apple cider vinegar":{sizes:[1],unit:"bottle",prices:[1.99]},
+"Worcestershire sauce":{sizes:[1],unit:"bottle",prices:[1.99]},
+"black olives, sliced":{sizes:[1],unit:"can",prices:[1.29]},
+"green olives, sliced":{sizes:[1],unit:"jar",prices:[1.79]},
+"lime juice":{sizes:[1],unit:"bottle",prices:[1.49]},
+"lemon juice":{sizes:[1],unit:"bottle",prices:[1.49]},
+"peanut butter (optional)":{sizes:[1],unit:"jar",prices:[2.99]},
+// Baking & dry goods
+"baking powder":{sizes:[100],unit:"tsp",prices:[1.49]},
+"baking soda":{sizes:[100],unit:"tsp",prices:[0.79]},
+"vanilla extract":{sizes:[50],unit:"tsp",prices:[2.99]},
+"cornstarch":{sizes:[48],unit:"tbsp",prices:[1.29]},
+"cocoa powder":{sizes:[24],unit:"tbsp",prices:[2.49]},
+"walnuts, chopped (optional)":{sizes:[1],unit:"bag",prices:[3.49]},
+// Spices & seasonings
+"garlic powder":{sizes:[50],unit:"tsp",prices:[1.29]},
+"onion powder":{sizes:[50],unit:"tsp",prices:[1.29]},
+"Italian seasoning":{sizes:[50],unit:"tsp",prices:[1.29]},
+"chili powder":{sizes:[24],unit:"tbsp",prices:[1.29]},
+"cumin":{sizes:[50],unit:"tsp",prices:[1.29]},
+"cinnamon":{sizes:[50],unit:"tsp",prices:[1.29]},
+"red pepper flakes":{sizes:[50],unit:"tsp",prices:[1.29]},
+"sesame seeds":{sizes:[24],unit:"tbsp",prices:[1.49]},
+// Frozen
+"stir fry vegetables (frozen)":{sizes:[1],unit:"bag",prices:[1.99]},
+};
+
+function roundToStore(name,rawAmount,rawUnit){
+const lk=name.toLowerCase();
+let pkg=PKG[name];
+if(!pkg){for(const[k,v]of Object.entries(PKG)){if(lk.includes(k.toLowerCase())){pkg=v;break}}}
+if(!pkg)return{displayAmt:Math.ceil(rawAmount),displayUnit:rawUnit,price:0};
+// Find smallest package size that fits, or multiple packages
+let needed=rawAmount;
+const sz=pkg.sizes;
+// For multi-size items (like turkey 1lb/2.5lb), find best combo
+if(sz.length>1){
+let bestCost=Infinity,bestQty='',bestPrice=0;
+// Try each single size
+for(let i=0;i<sz.length;i++){
+const count=Math.ceil(needed/sz[i]);
+const cost=count*pkg.prices[i];
+const label=count>1?count+'x '+sz[i]+' '+pkg.unit:sz[i]+' '+pkg.unit;
+if(cost<bestCost){bestCost=cost;bestQty=label;bestPrice=cost}}
+// Try combining sizes (largest first)
+for(let i=sz.length-1;i>=0;i--){
+const big=Math.floor(needed/sz[i]);
+const rem=needed-big*sz[i];
+if(big>0&&rem>0){
+for(let j=0;j<sz.length;j++){
+const small=Math.ceil(rem/sz[j]);
+const cost=big*pkg.prices[i]+small*pkg.prices[j];
+const label=(big>1?big+'x ':'')+sz[i]+' '+pkg.unit+' + '+(small>1?small+'x ':'')+sz[j]+' '+pkg.unit;
+if(cost<bestCost){bestCost=cost;bestQty=label;bestPrice=cost}}}}
+return{displayAmt:bestQty,displayUnit:'',price:bestPrice}}
+else{
+const count=Math.ceil(needed/sz[0]);
+const cost=count*pkg.prices[0];
+const containers=['bottle','jar','bag','can','canister','packet','box','tub','head','bunch','pint','piece'];
+const pl={'bunch':'bunches','piece':'pieces','pint':'pints'};
+let amt;
+if(containers.includes(pkg.unit)){const plural=pl[pkg.unit]||(pkg.unit+'s');amt=(count===1?'1 '+pkg.unit:count+' '+plural);}
+else{amt=(count>1?count+' \xd7 ':'')+sz[0]+' '+pkg.unit;}
+return{displayAmt:amt,displayUnit:'',price:cost}}}
+
+// Recipe data (same as before, with pt/ct times)
+const R=[
+{id:1,name:"Homemade Pancakes",cats:["Breakfast"],desc:"Fluffy from-scratch pancakes.",sv:4,hp:false,pt:10,ct:15,ingredients:[["all-purpose flour",2,"cup",880,24,184,2],["eggs",2,"large",140,12,1,10],["milk",1.5,"cup",150,12,18,5],["butter, melted",3,"tbsp",300,0,0,33],["sugar",2,"tbsp",96,0,24,0],["baking powder",1,"tbsp",6,0,2,0],["vanilla extract",1,"tsp",12,0,1,0],["salt",0.5,"tsp",0,0,0,0],["maple syrup",4,"tbsp",208,0,53,0]],steps:[["Make batter","Whisk dry, whisk wet, combine — lumps fine."],["Griddle","Medium heat, butter."],["Cook","¼ cup per. Bubbles = flip. 1-2 min more."],["Serve","Stack with syrup. ~12 pancakes."]],notes:"Don't overmix."},
+{id:2,name:"Meal Prep Breakfast Sandwiches",cats:["Breakfast"],desc:"Turkey patties with egg and cheese on thin bagels.",sv:6,hp:false,pt:15,ct:15,ingredients:[["85/15 ground turkey",1,"lb",240,28,0,14],["eggs",6,"large",420,36,3,30],["thin bagels",6,"piece",660,24,120,6],["American cheese slices",6,"piece",420,24,6,33],["Italian seasoning",1,"tsp",3,0,1,0],["garlic powder",0.5,"tsp",5,0,1,0],["onion powder",0.5,"tsp",4,0,1,0],["salt & pepper",1,"pinch",0,0,0,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Patties","Mix, form 6, cook 3-4 min/side."],["Eggs","Fry or scramble 6."],["Assemble","Toast bagels, layer."],["Freeze","Parchment, foil. Microwave 1.5-2 min."]],notes:"Thin bagels = fewer calories."},
+{id:3,name:"Turkey Sausage & Egg Muffin Cups",cats:["Breakfast"],desc:"Egg cups with ground turkey and cheese.",sv:4,hp:false,pt:10,ct:22,ingredients:[["85/15 ground turkey",0.75,"lb",180,21,0,10.5],["eggs",8,"large",560,48,4,40],["shredded cheddar",0.5,"cup",230,14,1,19],["bell pepper, diced",0.5,"medium",12,0.5,3,0],["minced garlic",2,"cloves",8,0,2,0],["Italian seasoning",1,"tsp",3,0,1,0],["salt & pepper",1,"pinch",0,0,0,0],["cooking spray",1,"spritz",5,0,0,0.5]],steps:[["Preheat","375°F. Spray tin."],["Turkey","5-6 min. Cool."],["Mix","Whisk eggs, stir in everything."],["Bake","18-22 min."]],notes:"Makes 12. Keeps 5 days."},
+{id:4,name:"Healthy Oat Muffins",cats:["Breakfast"],desc:"Toddler-friendly with banana, applesauce, mini choc chips.",sv:12,hp:false,pt:10,ct:20,ingredients:[["old-fashioned oats",2,"cup",600,20,108,10],["ripe bananas, mashed",2,"medium",210,2,54,1],["unsweetened applesauce",0.5,"cup",50,0,14,0],["eggs",2,"large",140,12,1,10],["honey",2,"tbsp",120,0,34,0],["vanilla extract",1,"tsp",12,0,1,0],["baking powder",1,"tsp",2,0,1,0],["cinnamon",1,"tsp",6,0,2,0],["mini chocolate chips",0.25,"cup",200,2,28,12],["coconut oil, melted",2,"tbsp",240,0,0,28]],steps:[["Preheat","350°F."],["Oats","Pulse to flour."],["Mix","Combine, fold in chips."],["Bake","18-20 min."]],notes:"Freeze well. Swap chips for blueberries."},
+{id:5,name:"Banana Chocolate Chip Muffins",cats:["Breakfast"],desc:"Moist bakery-style banana muffins.",sv:12,hp:false,pt:10,ct:22,ingredients:[["all-purpose flour",1.75,"cup",770,21,161,2],["ripe bananas, mashed",3,"medium",315,3,81,1.5],["butter, melted",0.33,"cup",528,0,0,59],["sugar",0.5,"cup",384,0,96,0],["egg",1,"large",70,6,0.5,5],["vanilla extract",1,"tsp",12,0,1,0],["baking soda",1,"tsp",0,0,0,0],["salt",0.5,"tsp",0,0,0,0],["chocolate chips",0.75,"cup",600,6,84,36]],steps:[["Preheat","350°F."],["Wet","Mash bananas, butter, sugar, egg, vanilla."],["Dry","Flour, baking soda, salt. Fold in chips."],["Bake","¾ full. 20-22 min."]],notes:"Black-spotted bananas = perfect."},
+{id:6,name:"Egg & Cheese Cups",cats:["Breakfast"],desc:"Simple baked egg cups with cheese.",sv:4,hp:false,pt:5,ct:18,ingredients:[["eggs",8,"large",560,48,4,40],["shredded cheddar",0.75,"cup",345,21,1.5,28.5],["milk",2,"tbsp",18,1.5,2,0.5],["salt & pepper",1,"pinch",0,0,0,0],["cooking spray",1,"spritz",5,0,0,0.5]],steps:[["Preheat","375°F."],["Whisk","Eggs, milk, cheese."],["Pour","12 cups."],["Bake","15-18 min."]],notes:"Great for toddlers."},
+{id:7,name:"Chicken Caesar Wraps",cats:["Chicken"],desc:"Chicken, romaine, parmesan, Caesar dressing.",sv:3,hp:false,pt:10,ct:12,ingredients:[["chicken breast",1,"lb",480,100,0,8],["flour tortillas (10\")",3,"piece",480,12,81,12],["romaine lettuce, chopped",3,"cup",24,2,4,0],["parmesan, shaved",0.25,"cup",110,10,1,7],["Caesar dressing",3,"tbsp",240,1,2,25],["Kinder's seasoning",1,"tsp",0,0,0,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Chicken","Season, cook, slice."],["Assemble","Dressing, romaine, chicken, parm."],["Roll","Fold, roll, cut."]],notes:"Add turkey bacon."},
+{id:8,name:"Chicken Pesto Pasta",cats:["Chicken","Pasta"],desc:"Seared chicken with penne and pesto.",sv:4,hp:true,pt:10,ct:20,rp:["penne",12,"oz",1260,42,252,6],pp:["protein penne",12,"oz",1140,84,204,12],ingredients:[["chicken breast",1.25,"lb",600,125,0,10],["PASTA",0,"",0,0,0,0],["basil pesto",0.5,"cup",480,8,8,48],["parmesan, grated",0.25,"cup",110,10,1,7],["minced garlic",3,"cloves",12,0,3,0],["olive oil",1,"tbsp",120,0,0,14],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Pasta","Boil, cook, reserve water."],["Chicken","Season, cook, slice."],["Toss","Pasta + pesto + garlic + water."]],notes:"Sam's Club pesto."},
+{id:9,name:"Chicken Quesadillas",cats:["Chicken"],desc:"Crispy tortillas, chicken, cheese, peppers.",sv:3,hp:false,pt:10,ct:15,ingredients:[["chicken breast",1,"lb",480,100,0,8],["flour tortillas (10\")",4,"piece",640,16,108,16],["shredded cheddar",1,"cup",460,28,2,38],["bell pepper, sliced",1,"medium",25,1,6,0],["Kinder's seasoning",1,"tsp",0,0,0,0],["olive oil",2,"tbsp",240,0,0,28],["sour cream",3,"tbsp",90,1,2,9]],steps:[["Chicken","Season, cook, dice."],["Peppers","2-3 min."],["Cook","Cheese, chicken, fold. 2-3 min/side."]],notes:"Add black beans."},
+{id:10,name:"Chicken Stir Fry",cats:["Chicken"],desc:"Quick stir fry over rice.",sv:4,hp:false,pt:10,ct:15,ingredients:[["chicken breast, sliced thin",1.25,"lb",600,125,0,10],["white rice, cooked",3,"cup",600,12,132,1.5],["stir fry vegetables (frozen)",4,"cup",120,4,20,0],["soy sauce",3,"tbsp",30,3,3,0],["minced garlic",3,"cloves",12,0,3,0],["sesame oil",1,"tbsp",120,0,0,14],["cornstarch",1,"tbsp",30,0,7,0],["honey",1,"tbsp",60,0,17,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Sauce","Whisk soy, honey, cornstarch, sesame oil."],["Chicken","High heat, 4-5 min."],["Veggies","3-4 min."],["Combine","Return chicken, sauce, toss."]],notes:"Fresh veggies too."},
+{id:11,name:"Chicken Burrito Bowls",cats:["Chicken"],desc:"Chicken over cilantro lime rice, beans, corn.",sv:5,hp:false,pt:10,ct:15,ingredients:[["chicken breast",1.5,"lb",720,150,0,12],["white rice, cooked",4,"cup",800,16,176,2],["black beans, drained",1,"cup",220,14,40,1],["corn (frozen or canned)",1,"cup",120,4,27,1],["shredded cheddar",0.5,"cup",230,14,1,19],["salsa",0.75,"cup",45,1.5,9,0],["lime juice",2,"tbsp",8,0,3,0],["Kinder's seasoning",2,"tsp",0,0,0,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Chicken","Season, cook, slice."],["Rice","Stir in lime."],["Assemble","Bowl it up."]],notes:"Keeps 5 days."},
+{id:12,name:"Honey Garlic Chicken w/ Broccoli & Rice",cats:["Chicken"],desc:"Sticky honey garlic chicken.",sv:5,hp:false,pt:10,ct:15,ingredients:[["chicken breast",1.5,"lb",720,150,0,12],["white rice, cooked",4,"cup",800,16,176,2],["broccoli florets",4,"cup",120,8,20,1],["honey",3,"tbsp",180,0,51,0],["soy sauce",3,"tbsp",30,3,3,0],["minced garlic",4,"cloves",16,0,4,0],["cornstarch",1,"tbsp",30,0,7,0],["olive oil",1,"tbsp",120,0,0,14],["sesame seeds",1,"tbsp",50,2,2,4]],steps:[["Sauce","Whisk."],["Chicken","Cut, cook, sauce."],["Broccoli","Steam 3-4 min."],["Assemble","Rice, chicken, broccoli."]],notes:"Double sauce for extra."},
+{id:13,name:"One-Pan Chicken & Roasted Veggies",cats:["Chicken"],desc:"Sheet pan chicken, broccoli, sweet potato.",sv:4,hp:false,pt:10,ct:25,ingredients:[["chicken breast",1.5,"lb",720,150,0,12],["broccoli florets",3,"cup",90,6,15,0.5],["sweet potato, cubed",2,"medium",210,4,48,0],["Kinder's seasoning",1,"tbsp",0,0,0,0],["olive oil",2,"tbsp",240,0,0,28],["garlic powder",0.5,"tsp",5,0,1,0],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Preheat","425°F."],["Season","Toss everything."],["Arrange","Single layer."],["Roast","22-25 min."]],notes:"Cut potato ½ inch."},
+{id:14,name:"Big-Batch Italian Chicken Cutlets",cats:["Chicken"],desc:"Classic Italian breaded cutlets.",sv:6,hp:false,pt:20,ct:20,ingredients:[["chicken breast (pounded thin)",3,"lb",1440,300,0,24],["all-purpose flour",1,"cup",440,12,92,1],["eggs",4,"large",280,24,2,20],["Italian breadcrumbs",2,"cup",880,24,160,12],["grated Parmesan",0.5,"cup",220,20,2,14],["garlic powder",1,"tsp",10,0,2,0],["salt",1,"tsp",0,0,0,0],["black pepper",0.5,"tsp",0,0,0,0],["olive oil",0.5,"cup",960,0,0,112]],steps:[["Station","Flour, eggs, crumbs+parm."],["Pound","¼ inch."],["Bread","Flour→egg→crumbs."],["Fry","¼ inch oil, 3-4 min/side."],["Drain","Wire rack."]],notes:"Reheat 375°F 8-10 min."},
+{id:15,name:"Greek Chicken & Rice Boxes",cats:["Chicken"],desc:"Chicken, rice, cucumber, tomato, tzatziki.",sv:5,hp:false,pt:15,ct:12,ingredients:[["chicken breast",1.5,"lb",720,150,0,12],["white rice, cooked",4,"cup",800,16,176,2],["cucumber, diced",1,"medium",16,1,4,0],["cherry tomatoes, halved",1,"cup",30,1,6,0],["tzatziki sauce",0.75,"cup",150,6,9,10],["lemon juice",2,"tbsp",6,0,2,0],["Kinder's seasoning",2,"tsp",0,0,0,0],["olive oil",2,"tbsp",240,0,0,28]],steps:[["Chicken","Season, cook, slice."],["Veggies","Dice, halve."],["Assemble","Box it up."]],notes:"Keep tzatziki separate."},
+{id:16,name:"Chicken Alfredo",cats:["Chicken","Pasta"],desc:"Creamy garlic Alfredo with chicken.",sv:4,hp:true,pt:10,ct:20,rp:["fettuccine",12,"oz",1260,42,252,6],pp:["protein fettuccine",12,"oz",1140,84,204,12],ingredients:[["chicken breast",1.25,"lb",600,125,0,10],["PASTA",0,"",0,0,0,0],["butter",3,"tbsp",300,0,0,33],["minced garlic",4,"cloves",16,0,4,0],["heavy cream",1,"cup",800,8,8,84],["parmesan, grated",0.75,"cup",330,30,3,21],["salt & pepper",1,"pinch",0,0,0,0],["Kinder's seasoning",1,"tsp",0,0,0,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Pasta","Boil, cook, reserve water."],["Chicken","Season, cook, slice."],["Sauce","Butter, garlic, cream, parm."],["Combine","Pasta in sauce, chicken on top."]],notes:"Gentle simmer, don't boil."},
+{id:17,name:"85/15 Turkey Meatballs",cats:["Turkey"],desc:"Juicy baked meatballs — makes 28-32.",sv:6,hp:false,pt:15,ct:21,ingredients:[["85/15 ground turkey",2.5,"lb",600,70,0,35],["breadcrumbs (plain or Italian)",0.5,"cup",220,6,40,3],["grated Parmesan",0.33,"cup",145,13,1,10],["eggs",2,"large",140,12,1,10],["minced garlic",3,"cloves",12,0,3,0],["Italian seasoning",1.5,"tsp",4,0,1,0],["garlic powder",0.5,"tsp",5,0,1,0],["onion powder",0.5,"tsp",4,0,1,0],["salt",1,"tsp",0,0,0,0],["black pepper",0.5,"tsp",0,0,0,0],["olive oil",2,"tbsp",240,0,0,28],["fresh parsley, chopped",2,"tbsp",2,0,0,0]],steps:[["Preheat","400°F."],["Mix","Combine, don't overwork."],["Form","1.5-inch balls."],["Bake","20-21 min."],["Rest","5 min."]],notes:"Freeze extras."},
+{id:18,name:"Ground Turkey Sweet Potato Taco Skillet",cats:["Turkey"],desc:"One-pan taco skillet.",sv:4,hp:false,pt:10,ct:20,ingredients:[["85/15 ground turkey",1.25,"lb",300,35,0,17.5],["sweet potato, diced small",2,"medium",210,4,48,0],["black beans, drained",1,"cup",220,14,40,1],["corn (frozen or canned)",0.75,"cup",90,3,20,1],["taco seasoning",2,"tbsp",40,0,8,0],["salsa",0.75,"cup",45,1.5,9,0],["shredded cheddar",0.5,"cup",230,14,1,19],["sour cream",0.25,"cup",120,1.5,2,12],["minced garlic",2,"cloves",8,0,2,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Potato","Oil, cover, 8-10 min."],["Turkey","Cook 5-6 min, seasoning."],["Combine","Beans, corn, salsa. 5 min."],["Top","Cheese, sour cream."]],notes:"Dice potato ½ inch."},
+{id:19,name:"Healthy Turkey \"Hamburger Helper\"",cats:["Turkey","Pasta"],desc:"Turkey, pasta, tomato-broth sauce, cheddar.",sv:4,hp:true,pt:5,ct:25,rp:["egg noodles",12,"oz",1260,42,228,12],pp:["protein penne",12,"oz",1140,84,204,12],dp:true,ingredients:[["85/15 ground turkey",1.25,"lb",300,35,0,17.5],["PASTA",0,"",0,0,0,0],["tomato paste",3,"tbsp",45,2,9,0],["chicken broth",2,"cup",20,2,2,0],["shredded cheddar",1,"cup",460,28,2,38],["minced garlic",3,"cloves",12,0,3,0],["garlic powder",0.5,"tsp",5,0,1,0],["onion powder",0.5,"tsp",4,0,1,0],["salt & pepper",1,"pinch",0,0,0,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Brown","Oil, 5-6 min."],["Sauce","Tomato paste, broth, simmer."],["Pasta","Add uncooked. Cover."],["Cheese","Off heat, stir in cheddar."]],notes:"One-pot. Protein pasta default."},
+{id:20,name:"Turkey Bolognese with Penne",cats:["Turkey","Pasta"],desc:"Rich turkey meat sauce over penne.",sv:5,hp:true,pt:10,ct:25,rp:["penne",16,"oz",1680,56,336,8],pp:["protein penne",16,"oz",1520,112,272,16],ingredients:[["85/15 ground turkey",1.5,"lb",360,42,0,21],["PASTA",0,"",0,0,0,0],["crushed tomatoes (28oz can)",1,"can",180,8,32,2],["tomato paste",2,"tbsp",30,1,6,0],["minced garlic",4,"cloves",16,0,4,0],["Italian seasoning",2,"tsp",6,0,2,0],["olive oil",2,"tbsp",240,0,0,28],["parmesan, grated",0.25,"cup",110,10,1,7],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Brown","Oil, 5-6 min."],["Sauce","15-20 min simmer."],["Pasta","Cook, drain."],["Combine","Toss. Parmesan."]],notes:"Better overnight."},
+{id:21,name:"Turkey Taco Lettuce Boats",cats:["Turkey"],desc:"Turkey in lettuce cups.",sv:3,hp:false,pt:5,ct:10,ingredients:[["85/15 ground turkey",1,"lb",240,28,0,14],["butter lettuce heads",2,"piece",20,2,4,0],["shredded cheddar",0.5,"cup",230,14,1,19],["sour cream",3,"tbsp",90,1,2,9],["salsa",0.5,"cup",30,1,6,0],["taco seasoning",2,"tbsp",40,0,8,0],["minced garlic",2,"cloves",8,0,2,0]],steps:[["Turkey","Brown, season, simmer."],["Cups","Separate leaves."],["Assemble","Fill and top."]],notes:"Low carb."},
+{id:22,name:"Turkey Burger Sliders",cats:["Turkey"],desc:"Turkey patties on slider buns.",sv:4,hp:false,pt:10,ct:10,ingredients:[["85/15 ground turkey",1.25,"lb",300,35,0,17.5],["slider buns",8,"piece",720,24,128,12],["American cheese slices",4,"piece",280,16,4,22],["minced garlic",2,"cloves",8,0,2,0],["Kinder's seasoning",1,"tsp",0,0,0,0],["onion powder",0.5,"tsp",4,0,1,0],["salt & pepper",1,"pinch",0,0,0,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Patties","Mix, form 8."],["Cook","3-4 min/side. Cheese, cover."],["Toast","Lightly."],["Assemble","On buns."]],notes:"Freeze raw patties."},
+{id:23,name:"Baked Ziti with Turkey",cats:["Turkey","Pasta"],desc:"Baked ziti with turkey, ricotta, mozzarella.",sv:6,hp:true,pt:15,ct:35,rp:["ziti",16,"oz",1680,56,336,8],pp:["protein penne",16,"oz",1520,112,272,16],ingredients:[["85/15 ground turkey",1.25,"lb",300,35,0,17.5],["PASTA",0,"",0,0,0,0],["marinara sauce",3,"cup",360,6,48,12],["ricotta cheese",1,"cup",360,24,8,24],["shredded mozzarella",1.5,"cup",480,36,6,36],["grated Parmesan",0.25,"cup",110,10,1,7],["minced garlic",3,"cloves",12,0,3,0],["Italian seasoning",1,"tsp",3,0,1,0],["salt & pepper",1,"pinch",0,0,0,0],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Pasta","1 min less. Drain."],["Turkey","Brown, garlic, marinara."],["Layer","9x13 with cheese layers."],["Bake","375°F, 25-30 min."]],notes:"Make ahead."},
+{id:24,name:"Pan-Seared Ribeye",cats:["Steak"],desc:"Ribeye with garlic butter.",sv:2,hp:false,pt:5,ct:12,ingredients:[["ribeye steak (1 inch thick)",2,"piece",1120,84,0,86],["butter",3,"tbsp",300,0,0,33],["minced garlic",4,"cloves",16,0,4,0],["fresh rosemary (or dried)",2,"sprigs",4,0,1,0],["olive oil",2,"tbsp",240,0,0,28],["salt",1,"tsp",0,0,0,0],["black pepper",1,"tsp",0,0,0,0]],steps:[["Prep","Out 30 min. Pat dry. Season."],["Sear","Smoking cast iron, 3-4 min/side."],["Baste","Butter, garlic, rosemary."],["Rest","5-8 min."]],notes:"Dry = crust."},
+{id:25,name:"Steak Tacos",cats:["Steak"],desc:"Steak on corn tortillas.",sv:4,hp:false,pt:10,ct:15,ingredients:[["sirloin or flank steak",1.5,"lb",720,126,0,24],["corn tortillas (small)",12,"piece",600,12,108,6],["bell pepper, sliced",2,"medium",50,2,12,0],["onion, sliced",1,"medium",44,1,10,0],["shredded cheddar",0.5,"cup",230,14,1,19],["salsa",0.5,"cup",30,1,6,0],["fresh cilantro",0.25,"cup",1,0,0,0],["lime",2,"piece",6,0,2,0],["olive oil",2,"tbsp",240,0,0,28],["Kinder's seasoning",1,"tbsp",0,0,0,0],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Season","Kinder's."],["Sear","4-5 min/side. Rest, slice."],["Veggies","Peppers & onions 4-5 min."],["Tortillas","Flame 15-20 sec."],["Assemble","Everything."]],notes:"Slice against grain."},
+{id:26,name:"Steak Fajitas",cats:["Steak"],desc:"Steak strips with peppers and onions.",sv:4,hp:false,pt:10,ct:12,ingredients:[["sirloin or flank steak",1.5,"lb",720,126,0,24],["bell peppers, sliced",3,"medium",75,3,18,0],["onion, sliced",1,"large",60,1.5,14,0],["flour tortillas (10\")",8,"piece",1280,32,216,32],["sour cream",0.25,"cup",120,1.5,2,12],["shredded cheddar",0.5,"cup",230,14,1,19],["salsa",0.5,"cup",30,1,6,0],["lime",1,"piece",3,0,1,0],["olive oil",2,"tbsp",240,0,0,28],["Kinder's seasoning",1,"tbsp",0,0,0,0],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Slice","Thin against grain."],["Sear","Batches, 2-3 min."],["Veggies","4-5 min."],["Combine","Return steak, lime."],["Serve","Tortillas, toppings."]],notes:"Don't crowd pan."},
+{id:27,name:"Philly Cheesesteak Style",cats:["Steak"],desc:"Thin steak, peppers, onions, provolone on hoagies.",sv:4,hp:false,pt:10,ct:15,ingredients:[["sirloin or ribeye, sliced very thin",1.5,"lb",720,126,0,24],["hoagie rolls",4,"piece",800,28,140,12],["provolone cheese slices",8,"piece",560,40,4,40],["onion, sliced thin",1,"large",60,1.5,14,0],["bell pepper, sliced",2,"medium",50,2,12,0],["minced garlic",2,"cloves",8,0,2,0],["olive oil",2,"tbsp",240,0,0,28],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Prep","Freeze 20-30 min, slice thin."],["Veggies","5-6 min."],["Steak","High heat, sear, chop."],["Cheese","Provolone, cover."],["Assemble","Load hoagies."]],notes:"Freeze for thin slicing."},
+{id:28,name:"Classic Chuck Roast",cats:["Crock Pot"],desc:"Fall-apart roast with veggies.",sv:6,hp:false,pt:15,ct:480,ingredients:[["chuck roast",3,"lb",1920,234,0,102],["potatoes, quartered",1.5,"lb",510,12,117,0],["carrots, cut in chunks",1,"lb",160,4,36,0],["onion, quartered",1,"large",60,1.5,14,0],["beef broth",2,"cup",30,4,2,0],["minced garlic",4,"cloves",16,0,4,0],["Worcestershire sauce",2,"tbsp",26,0,6,0],["Italian seasoning",1,"tsp",3,0,1,0],["salt",1,"tsp",0,0,0,0],["black pepper",0.5,"tsp",0,0,0,0],["olive oil",2,"tbsp",240,0,0,28]],steps:[["Sear","3-4 min/side."],["Layer","Onion, garlic, roast, veggies."],["Liquid","Broth, Worcestershire."],["Cook","LOW 8-10 hrs."],["Serve","Shred or slice."]],notes:"Sear is key."},
+{id:29,name:"Crock Pot Chicken Tacos",cats:["Crock Pot"],desc:"Dump-and-go shredded chicken.",sv:6,hp:false,pt:5,ct:360,ingredients:[["chicken breast",2,"lb",960,200,0,16],["salsa",1.5,"cup",90,3,18,0],["taco seasoning",2,"tbsp",40,0,8,0],["minced garlic",3,"cloves",12,0,3,0],["corn tortillas",12,"piece",600,12,108,6],["shredded cheddar",0.75,"cup",345,21,1.5,28.5],["sour cream",0.25,"cup",120,1.5,2,12],["fresh cilantro",0.25,"cup",1,0,0,0],["lime",2,"piece",6,0,2,0]],steps:[["Load","Chicken, salsa, seasoning."],["Cook","LOW 6-8 hrs."],["Shred","Two forks, return."],["Serve","Tortillas, toppings."]],notes:"Easiest recipe."},
+{id:30,name:"Crock Pot Turkey Chili",cats:["Crock Pot"],desc:"Turkey chili with beans.",sv:6,hp:false,pt:10,ct:360,ingredients:[["85/15 ground turkey",1.5,"lb",360,42,0,21],["kidney beans, drained",1,"can",330,22,56,1],["black beans, drained",1,"can",330,22,56,1],["diced tomatoes (14oz can)",2,"can",140,4,28,0],["tomato paste",3,"tbsp",45,2,9,0],["onion, diced",1,"large",60,1.5,14,0],["minced garlic",4,"cloves",16,0,4,0],["chili powder",2,"tbsp",48,2,8,2],["cumin",1,"tsp",8,0,1,0.5],["salt & pepper",1,"pinch",0,0,0,0],["shredded cheddar",0.5,"cup",230,14,1,19],["sour cream",0.25,"cup",120,1.5,2,12],["olive oil",1,"tbsp",120,0,0,14]],steps:[["Brown","5-6 min."],["Load","Everything in crock pot."],["Cook","LOW 6-8 hrs."],["Serve","Cheese, sour cream."]],notes:"Better next day."},
+{id:31,name:"Crock Pot Pulled Chicken BBQ",cats:["Crock Pot"],desc:"Shredded BBQ chicken.",sv:6,hp:false,pt:5,ct:360,ingredients:[["chicken breast",2,"lb",960,200,0,16],["BBQ sauce",1,"cup",480,0,100,2],["chicken broth",0.5,"cup",7,1,0.5,0],["onion, diced",1,"medium",44,1,10,0],["minced garlic",3,"cloves",12,0,3,0],["apple cider vinegar",1,"tbsp",3,0,0,0],["hamburger buns",6,"piece",720,24,132,12],["coleslaw mix",2,"cup",30,2,6,0]],steps:[["Load","Everything in crock pot."],["Cook","LOW 6-8 hrs."],["Shred","Return, mix."],["Serve","On buns, coleslaw."]],notes:"Sweet Baby Ray's."},
+{id:32,name:"Garlic Butter Parmesan Pasta",cats:["Pasta","No Meat"],desc:"Buttery garlic pasta — 20 min.",sv:4,hp:true,pt:5,ct:15,rp:["spaghetti",12,"oz",1260,42,252,6],pp:["protein spaghetti",12,"oz",1140,84,204,12],ingredients:[["PASTA",0,"",0,0,0,0],["butter",4,"tbsp",400,0,0,44],["minced garlic",6,"cloves",24,0,6,0],["parmesan, grated",0.75,"cup",330,30,3,21],["fresh parsley, chopped",3,"tbsp",3,0,1,0],["red pepper flakes",0.25,"tsp",1,0,0,0],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Pasta","Boil, reserve water."],["Butter","Melt, garlic 60 sec."],["Toss","Pasta + water + parm."],["Finish","Flakes, parsley."]],notes:"Pasta water = creamy."},
+{id:33,name:"Pasta Aglio e Olio",cats:["Pasta","No Meat"],desc:"Classic garlic & olive oil.",sv:4,hp:true,pt:5,ct:15,rp:["spaghetti",12,"oz",1260,42,252,6],pp:["protein spaghetti",12,"oz",1140,84,204,12],ingredients:[["PASTA",0,"",0,0,0,0],["olive oil",0.33,"cup",528,0,0,59],["minced garlic",8,"cloves",32,0,8,0],["red pepper flakes",0.5,"tsp",2,0,0,0],["fresh parsley, chopped",0.25,"cup",4,0,1,0],["parmesan, grated",0.25,"cup",110,10,1,7],["salt",1,"tsp",0,0,0,0]],steps:[["Pasta","1 min less. Reserve water."],["Garlic","Oil, med-low, 3-4 min golden."],["Combine","Pasta + water, toss 2 min."],["Finish","Parsley. Parm on side."]],notes:"Golden, never brown garlic."},
+{id:34,name:"Pasta Salad",cats:["No Meat","Pasta"],desc:"Italian pasta salad.",sv:6,hp:true,pt:15,ct:12,rp:["rotini",16,"oz",1680,56,336,8],pp:["protein rotini",16,"oz",1520,112,272,16],ingredients:[["PASTA",0,"",0,0,0,0],["cucumber, diced",1,"medium",16,1,4,0],["bell pepper, diced",2,"medium",50,2,12,0],["black olives, sliced",0.5,"cup",70,1,4,6],["green olives, sliced",0.5,"cup",80,1,2,8],["Italian dressing",0.75,"cup",480,0,18,45],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Pasta","Cook, rinse cold."],["Chop","Dice everything."],["Combine","Toss."],["Dress","Refrigerate 1+ hr."]],notes:"Better overnight."},
+{id:35,name:"Baked Feta Pasta",cats:["No Meat","Pasta"],desc:"Roasted tomatoes + feta tossed with pasta.",sv:4,hp:true,pt:10,ct:40,rp:["penne",12,"oz",1260,42,252,6],pp:["protein penne",12,"oz",1140,84,204,12],ingredients:[["cherry tomatoes",2,"pint",120,4,24,2],["feta cheese block",8,"oz",600,28,8,48],["PASTA",0,"",0,0,0,0],["garlic cloves, whole",5,"cloves",20,1,5,0],["olive oil",3,"tbsp",360,0,0,42],["fresh basil",0.25,"cup",2,0,0,0],["red pepper flakes",0.25,"tsp",1,0,0,0],["salt & pepper",1,"pinch",0,0,0,0]],steps:[["Prep","400°F. Arrange."],["Bake","35-40 min."],["Pasta","Cook."],["Smash & toss","Fork-smash, add pasta."]],notes:"Good olive oil matters."},
+{id:36,name:"Banana Bread",cats:["Desserts"],desc:"Classic moist banana bread.",sv:10,hp:false,pt:10,ct:60,ingredients:[["ripe bananas, mashed",3,"medium",315,3,81,1.5],["all-purpose flour",1.5,"cup",660,18,138,1.5],["butter, melted",0.33,"cup",528,0,0,59],["sugar",0.75,"cup",576,0,144,0],["egg",1,"large",70,6,0.5,5],["vanilla extract",1,"tsp",12,0,1,0],["baking soda",1,"tsp",0,0,0,0],["salt",0.25,"tsp",0,0,0,0],["walnuts, chopped (optional)",0.5,"cup",380,9,8,38]],steps:[["Preheat","350°F."],["Wet","Mash, butter, sugar, egg, vanilla."],["Dry","Flour, baking soda. Walnuts."],["Bake","55-65 min."],["Cool","10 min."]],notes:"Black bananas = best."},
+{id:37,name:"Chocolate Protein Ice Cream",cats:["Desserts"],desc:"Protein ice cream with frozen bananas.",sv:2,hp:false,pt:5,ct:5,ingredients:[["frozen bananas",3,"medium",315,3,81,1.5],["chocolate protein powder",2,"scoop",240,48,6,2],["milk",0.25,"cup",25,2,3,0.8],["cocoa powder",1,"tbsp",12,1,3,0.5],["peanut butter (optional)",1,"tbsp",94,4,3,8],["mini chocolate chips (topping)",1,"tbsp",70,1,9,4]],steps:[["Blend","Frozen chunks + everything."],["Process","Until thick."],["Serve","Soft-serve or freeze 1-2 hrs."]],notes:"Chunk bananas before freezing."},
+{id:38,name:"Vanilla Protein Ice Cream",cats:["Desserts"],desc:"Smooth vanilla protein ice cream.",sv:2,hp:false,pt:5,ct:5,ingredients:[["frozen bananas",3,"medium",315,3,81,1.5],["vanilla protein powder",2,"scoop",240,48,6,2],["milk",0.25,"cup",25,2,3,0.8],["vanilla extract",1,"tsp",12,0,1,0],["honey",1,"tbsp",60,0,17,0],["strawberries, sliced (topping)",0.5,"cup",24,0.5,6,0]],steps:[["Blend","Everything."],["Process","Until thick."],["Serve","With strawberries."]],notes:"Swap toppings."},
+{id:39,name:"Blueberry Oat Muffins",cats:["Desserts"],desc:"Oat muffins with blueberries.",sv:12,hp:false,pt:10,ct:20,ingredients:[["old-fashioned oats",2,"cup",600,20,108,10],["ripe banana, mashed",1,"medium",105,1,27,0.5],["eggs",2,"large",140,12,1,10],["honey",3,"tbsp",180,0,51,0],["vanilla extract",1,"tsp",12,0,1,0],["baking powder",1,"tsp",2,0,1,0],["cinnamon",0.5,"tsp",3,0,1,0],["blueberries (fresh or frozen)",1,"cup",80,1,20,0.5],["coconut oil, melted",2,"tbsp",240,0,0,28],["milk",0.5,"cup",50,4,6,1.5]],steps:[["Preheat","350°F."],["Oats","Pulse."],["Mix","Fold in blueberries."],["Bake","18-20 min."]],notes:"Don't thaw frozen."}
+];
+
+const CATS=['All','Breakfast','Chicken','Turkey','Steak','Crock Pot','Pasta','No Meat','Desserts','♥ Faves'];
+const CB={Breakfast:'b-breakfast',Chicken:'b-chicken',Turkey:'b-turkey',Steak:'b-steak','Crock Pot':'b-crockpot','No Meat':'b-nomeat',Desserts:'b-desserts',Pasta:'b-pasta'};
+const EMOJI={1:'🥞',2:'🥯',3:'🧁',4:'🧁',5:'🍌',6:'🥚',7:'🌯',8:'🍝',9:'🧀',10:'🥘',11:'🌯',12:'🍯',13:'🍗',14:'🍗',15:'🥙',16:'🍝',17:'🧆',18:'🌮',19:'🍝',20:'🍝',21:'🥬',22:'🍔',23:'🍝',24:'🥩',25:'🌮',26:'🌶️',27:'🥖',28:'🥘',29:'🌮',30:'🌶️',31:'🍗',32:'🧄',33:'🧄',34:'🥗',35:'🧀',36:'🍞',37:'🍫',38:'🍦',39:'🫐'};
+const SM={'Produce':['bell pepper','sweet potato','broccoli','romaine lettuce','butter lettuce','cucumber','cherry tomatoes','garlic','minced garlic','garlic cloves','onion','carrots','potatoes','ripe banana','frozen banana','blueberries','strawberries','fresh parsley','fresh basil','fresh cilantro','lime','lemon','fresh rosemary','coleslaw mix','applesauce','unsweetened applesauce'],'Meat & Poultry':['chicken breast','ground turkey','85/15 ground turkey','turkey bacon','chicken breast (pounded thin)','ribeye','sirloin','flank steak','chuck roast'],'Dairy & Eggs':['eggs','egg','shredded cheddar','American cheese','parmesan','grated Parmesan','feta cheese block','provolone cheese','sour cream','butter','milk','heavy cream','ricotta cheese','shredded mozzarella'],'Bread & Bakery':['flour tortillas','corn tortillas','thin bagels','slider buns','hoagie rolls','hamburger buns'],'Pasta & Grains':['penne','protein penne','rotini','protein rotini','egg noodles','white rice','spaghetti','protein spaghetti','fettuccine','protein fettuccine','ziti'],'Canned & Jarred':['black beans','kidney beans','corn','crushed tomatoes','diced tomatoes','tomato paste','chicken broth','beef broth','basil pesto','salsa','Italian dressing','Caesar dressing','tzatziki sauce','BBQ sauce','Worcestershire sauce','marinara sauce','honey','maple syrup','soy sauce','apple cider vinegar','black olives','green olives','peanut butter'],'Pantry & Spices':['all-purpose flour','breadcrumbs','Italian breadcrumbs','old-fashioned oats','protein powder','chocolate protein powder','vanilla protein powder','cornstarch','sugar','cocoa powder','baking soda','baking powder','chocolate chips','mini chocolate chips','walnuts','olive oil','sesame oil','coconut oil','cooking spray','vanilla extract','taco seasoning','Italian seasoning',"Kinder's seasoning",'garlic powder','onion powder','chili powder','cumin','cinnamon','red pepper flakes','sesame seeds'],'Frozen':['stir fry vegetables']};
+function gS(n){const l=n.toLowerCase();for(const[s,i]of Object.entries(SM))for(const x of i)if(l.includes(x.toLowerCase())||x.toLowerCase().includes(l))return s;return'Other'}
+
+let cv='list',ac='All',ss=new Set(),slv='sec',fv=JSON.parse(localStorage.getItem('rb_fav')||'[]'),searchQ='',customItems=[],haveItems=new Set();
+document.getElementById('recipeCt').textContent=R.length+' recipes';
+
+function fmtTime(m){if(m>=60){const h=Math.floor(m/60);const rm=m%60;return rm>0?h+'h '+rm+'m':h+'h'}return m+'m'}
+function getRecipeCost(r){let c=0;for(const i of r.ingredients){if(i[0]==='PASTA'){const pa=r.rp;if(pa){const p=roundToStore(pa[0],pa[1],pa[2]);c+=p.price}continue}if(['salt & pepper','cooking spray','salt','black pepper'].includes(i[0]))continue;const p=roundToStore(i[0],i[1],i[2]);c+=p.price}return Math.round(c*100)/100}
+
+function getFiltered(){let list=ac==='♥ Faves'?R.filter(r=>fv.includes(r.id)):ac==='All'?R:R.filter(r=>r.cats.includes(ac));if(searchQ){const q=searchQ.toLowerCase();list=list.filter(r=>r.name.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)||r.ingredients.some(i=>i[0].toLowerCase().includes(q)))}return list}
+
+function rT(){document.getElementById('tabs').innerHTML=CATS.map(c=>{const cnt=c==='All'?R.length:c==='♥ Faves'?fv.length:R.filter(r=>r.cats.includes(c)).length;return`<button class="tab ${c===ac?'active':''}" onclick="sC('${c}')">${c==='♥ Faves'?'❤️('+cnt+')':c+'('+cnt+')'}</button>`}).join('')}
+function sC(c){ac=c;rT();rG()}
+function onSearch(){searchQ=document.getElementById('searchInput').value;rG()}
+
+function rG(){const g=document.getElementById('grid'),f=getFiltered();
+if(!f.length){g.innerHTML='<div class="no-results">'+(searchQ?'No recipes match "'+searchQ+'"':'No favorites yet — tap ❤️ to add!')+'</div>';return}
+g.innerHTML=f.map(r=>{const t=gT(r,r.sv,false),p={c:Math.round(t.c/r.sv),p:Math.round(t.p/r.sv),cb:Math.round(t.cb/r.sv),f:Math.round(t.f/r.sv)};
+const iv=fv.includes(r.id),em=EMOJI[r.id]||'🍽️',cost=getRecipeCost(r),tt=r.pt+r.ct;
+const badges=r.cats.map(c=>`<span class="badge ${CB[c]||'b-nomeat'}">${c}</span>`).join('');
+return`<div class="card" onclick="oR(${r.id})"><div class="card-badges">${badges}</div><button class="fav ${iv?'on':''}" onclick="event.stopPropagation();tF(${r.id})">${iv?'❤️':'🤍'}</button><div class="card-inner"><div class="card-icon">${em}</div><div class="card-content"><div class="card-t">${r.name}</div><div class="card-d">${r.desc}</div><div class="card-meta"><span class="card-time">⏱ ${fmtTime(r.pt)} prep · ${fmtTime(r.ct)} cook · ${fmtTime(tt)} total</span><span class="card-cost">~$${cost.toFixed(2)}</span></div></div></div><div class="card-m"><div class="mp" style="color:var(--m-cal)">${p.c} <span>cal</span></div><div class="mp" style="color:var(--m-pro)">${p.p}g <span>pro</span></div><div class="mp" style="color:var(--m-carb)">${p.cb}g <span>carb</span></div><div class="mp" style="color:var(--m-fat)">${p.f}g <span>fat</span></div></div></div>`}).join('')}
+
+function tF(id){const i=fv.indexOf(id);if(i>-1)fv.splice(i,1);else fv.push(id);localStorage.setItem('rb_fav',JSON.stringify(fv));rT();rG()}
+function gT(r,sv,up){let c=0,p=0,cb=0,f=0;for(const i of r.ingredients){if(i[0]==='PASTA'){const pa=up?r.pp:r.rp;if(pa){c+=pa[3];p+=pa[4];cb+=pa[5];f+=pa[6]}continue}c+=i[3];p+=i[4];cb+=i[5];f+=i[6]}return{c,p,cb,f}}
+
+function oR(id){const r=R.find(x=>x.id===id);if(!r)return;cv='detail';document.getElementById('listView').classList.add('hidden');document.getElementById('shopView').style.display='none';document.getElementById('detailView').style.display='block';document.getElementById('backBtn').style.display='block';document.getElementById('shopBtn').style.display='none';window.scrollTo(0,0);rD(r,r.sv,r.dp||false)}
+function rD(r,sv,up){const d=document.getElementById('detailView'),sc=sv/r.sv,em=EMOJI[r.id]||'🍽️',cost=getRecipeCost(r),sCost=(cost*(sv/r.sv)).toFixed(2),tt=r.pt+r.ct;
+const badges=r.cats.map(c=>`<span class="badge ${CB[c]||'b-nomeat'}">${c}</span>`).join('');
+let rows='',tc=0,tp=0,tcb=0,tf=0;
+for(const i of r.ingredients){let nm,am,un,cl,pr,cb,ft;if(i[0]==='PASTA'){const pa=up?r.pp:r.rp;if(!pa)continue;[nm,am,un,cl,pr,cb,ft]=[pa[0],pa[1],pa[2],pa[3],pa[4],pa[5],pa[6]]}else{[nm,am,un,cl,pr,cb,ft]=i}
+const sC=Math.round(cl*sc),sP=Math.round(pr*sc*10)/10,sCb=Math.round(cb*sc*10)/10,sF=Math.round(ft*sc*10)/10,sA=Math.round(am*sc*100)/100;tc+=sC;tp+=sP;tcb+=sCb;tf+=sF;
+rows+=`<tr><td class="in">${nm}</td><td class="am">${fA(sA)} ${un}</td><td class="cal">${sC}</td><td class="pro">${Math.round(sP)}g</td><td class="carb">${Math.round(sCb)}g</td><td class="fat">${Math.round(sF)}g</td></tr>`}
+const ps={c:Math.round(tc/sv),p:Math.round(tp/sv),cb:Math.round(tcb/sv),f:Math.round(tf/sv)};
+let pt='';if(r.hp)pt=`<div class="ptog"><label>Pasta Type</label><label class="tsw"><input type="checkbox" id="pt" ${up?'checked':''} onchange="oPT(${r.id},${sv})"><span class="tsl"></span></label><span class="ptl">${up?'Protein':'Regular'}</span></div>`;
+const qb=[2,4,8];
+d.innerHTML=`<div class="card-badges">${badges}</div><div class="detail-icon">${em}</div><h1 class="dt">${r.name}</h1><p class="dd">${r.desc}</p>
+<div class="detail-meta"><span class="dm-item">⏱ <strong>${fmtTime(r.pt)}</strong> prep</span><span class="dm-item">🔥 <strong>${fmtTime(r.ct)}</strong> cook</span><span class="dm-item">⏰ <strong>${fmtTime(tt)}</strong> total</span><span class="dm-cost">~$${sCost} est.</span></div>
+<div class="srv"><div class="srv-top"><span>Servings</span><span class="srv-ct" id="svC">${sv}</span></div><div class="srv-btns">${qb.map(q=>`<button class="srv-qb ${sv===q?'act':''}" onclick="oSV(${r.id},${q})">${q}</button>`).join('')}</div><input type="range" min="1" max="12" value="${sv}" id="svS" oninput="oSV(${r.id},+this.value)"></div>${pt}
+<div class="macbox"><div><div class="mv" style="color:var(--m-cal)">${ps.c}</div><div class="ml">cal/srv</div></div><div><div class="mv" style="color:var(--m-pro)">${ps.p}g</div><div class="ml">protein</div></div><div><div class="mv" style="color:var(--m-carb)">${ps.cb}g</div><div class="ml">carbs</div></div><div><div class="mv" style="color:var(--m-fat)">${ps.f}g</div><div class="ml">fat</div></div></div>
+<h2 class="stit">Ingredients & Macros</h2><div class="mtw"><table class="mt"><thead><tr><th>Ingredient</th><th>Amount</th><th>Cal</th><th>Pro</th><th>Carb</th><th>Fat</th></tr></thead><tbody>${rows}<tr class="trow"><td>Total</td><td></td><td class="cal">${Math.round(tc)}</td><td class="pro">${Math.round(tp)}g</td><td class="carb">${Math.round(tcb)}g</td><td class="fat">${Math.round(tf)}g</td></tr></tbody></table></div>
+<h2 class="stit">Instructions</h2><ol class="steps">${r.steps.map(s=>`<li><span class="stt">${s[0]}</span>${s[1]}</li>`).join('')}</ol>
+${r.notes?`<h2 class="stit">Notes & Tips</h2><div class="notes"><p>${r.notes}</p></div>`:''}`}
+function oSV(id,v){const r=R.find(x=>x.id===id);rD(r,v,document.getElementById('pt')?.checked||false)}
+function oPT(id,sv){const r=R.find(x=>x.id===id);rD(r,sv,document.getElementById('pt').checked)}
+function fA(n){if(n===0)return'';if(n>=1&&n%1===0)return''+n;if(n>=1)return n.toFixed(1).replace(/\.0$/,'');const f=[[.25,'¼'],[.33,'⅓'],[.5,'½'],[.67,'⅔'],[.75,'¾']];for(const[v,s]of f)if(Math.abs(n-v)<.06)return s;return n.toFixed(1)}
+
+function randomRecipe(){const r=R[Math.floor(Math.random()*R.length)];const em=EMOJI[r.id]||'🍽️',tt=r.pt+r.ct,cost=getRecipeCost(r);
+document.getElementById('randomCard').innerHTML=`<div style="font-size:3rem;margin-bottom:8px">${em}</div><h2 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:6px">${r.name}</h2><p style="color:var(--text-sec);font-size:.85rem;margin-bottom:4px">${r.desc}</p><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:16px">⏱ ${fmtTime(tt)} · ~$${cost.toFixed(2)}</p><div class="random-btns"><button class="rb-again" onclick="randomRecipe()">🎲 Again</button><button class="rb-go" onclick="closeRandom();oR(${r.id})">Let's Cook!</button></div>`;
+document.getElementById('randomOverlay').classList.add('show')}
+function closeRandom(){document.getElementById('randomOverlay').classList.remove('show')}
+
+// === SHOPPING LIST ===
+function toggleShop(){if(cv==='shopping'){goBack();return}cv='shopping';document.getElementById('listView').classList.add('hidden');document.getElementById('detailView').style.display='none';document.getElementById('shopView').style.display='block';document.getElementById('backBtn').style.display='block';document.getElementById('shopBtn').classList.add('active');ss.clear();customItems=[];haveItems=new Set();rSL();document.getElementById('shRes').style.display='none';window.scrollTo(0,0)}
+function rSL(){const c=document.getElementById('shopSelect');let h='',lc='';const co=['Breakfast','Chicken','Turkey','Steak','Crock Pot','Pasta','No Meat','Desserts'];const shown=new Set();
+for(const cat of co){let has=false;for(const r of R){if(r.cats[0]===cat&&!shown.has(r.id)){if(!has){h+=`<div class="shop-cat-hdr">${cat}</div>`;has=true}shown.add(r.id);const s=ss.has(r.id);h+=`<div class="sri ${s?'sel':''}" onclick="tS(${r.id})"><div class="sch">${s?'✓':''}</div><span class="srn">${r.name}</span></div>`}}}
+c.innerHTML=h;const b=document.getElementById('genBtn');const tc=Array.from(ss).reduce((s,id)=>{const r=R.find(x=>x.id===id);return s+getRecipeCost(r)},0);
+b.textContent=ss.size>0?`Generate List (${ss.size} recipes · ~$${tc.toFixed(2)})`:'Generate Shopping List (0 selected)';b.disabled=ss.size===0}
+function tS(id){if(ss.has(id))ss.delete(id);else ss.add(id);rSL()}
+
+function genList(){
+const m={};
+for(const id of ss){const r=R.find(x=>x.id===id);for(const i of r.ingredients){
+if(i[0]==='PASTA'){const p=r.rp;if(p){const k=p[0].toLowerCase();if(!m[k])m[k]={name:p[0],amount:0,unit:p[2]};m[k].amount+=p[1]}continue}
+if(['salt & pepper','cooking spray','salt','black pepper'].includes(i[0]))continue;
+const k=i[0].toLowerCase().replace(/,.*$/,'').trim();if(!m[k])m[k]={name:i[0],amount:0,unit:i[2]};m[k].amount+=i[1]}}
+// Apply store rounding and pricing
+window._shopData=Object.values(m).map(item=>{
+const rounded=roundToStore(item.name,item.amount,item.unit);
+return{...item,displayAmt:rounded.displayAmt,displayUnit:rounded.displayUnit,price:rounded.price}}).sort((a,b)=>a.name.localeCompare(b.name));
+haveItems=new Set();
+document.getElementById('shRes').style.display='block';
+rSC();
+document.getElementById('shRes').scrollIntoView({behavior:'smooth'});
+}
+
+function toggleHave(key){if(haveItems.has(key))haveItems.delete(key);else haveItems.add(key);rSC()}
+
+function addCustomItem(){const input=document.getElementById('addItemInput');const v=input.value.trim();if(!v)return;customItems.push(v);input.value='';rSC()}
+
+function getShopTotal(){
+if(!window._shopData)return 0;
+let total=0;
+for(const item of window._shopData){if(!haveItems.has(item.name))total+=item.price}
+return total;
+}
+
+function renderItem(item){
+const have=haveItems.has(item.name);
+const priceStr=item.price>0?'$'+item.price.toFixed(2):'';
+let amtStr;
+if(typeof item.displayAmt==='string'){amtStr=item.displayAmt}
+else{amtStr=fA(item.displayAmt)+(item.displayUnit?' '+item.displayUnit:'')}
+return`<div class="shi"><div class="shi-check ${have?'have':''}" onclick="toggleHave('${item.name.replace(/'/g,"\\'")}')">${have?'✓':''}</div><span class="shi-text ${have?'have-text':''}">${amtStr} ${item.name}</span><span class="shi-price ${have?'have-price':''}">${priceStr}</span></div>`}
+
+function rSC(){
+const c=document.getElementById('shContent'),items=window._shopData||[];
+const customHtml=customItems.length?`<div class="shsec"><h3>🛒 Other Items</h3>${customItems.map((ci,i)=>{const have=haveItems.has('custom_'+i);return`<div class="shi"><div class="shi-check ${have?'have':''}" onclick="toggleHave('custom_${i}')">${have?'✓':''}</div><span class="shi-text ${have?'have-text':''}">${ci}</span><span class="shi-price"></span></div>`}).join('')}</div>`:'';
+
+if(slv==='alpha'){c.innerHTML=items.map(i=>renderItem(i)).join('')+customHtml}
+else{const s={};for(const i of items){const sec=gS(i.name);if(!s[sec])s[sec]=[];s[sec].push(i)}
+const o=['Produce','Meat & Poultry','Dairy & Eggs','Bread & Bakery','Pasta & Grains','Canned & Jarred','Pantry & Spices','Frozen','Other'];
+c.innerHTML=o.filter(x=>s[x]).map(x=>`<div class="shsec"><h3>${x}</h3>${s[x].map(i=>renderItem(i)).join('')}</div>`).join('')+customHtml}
+
+const total=getShopTotal();
+document.getElementById('shopTotal').innerHTML=`<div class="total-label">Estimated Total (Aldi)</div><div class="total-val">$${total.toFixed(2)}</div><div class="total-label" style="margin-top:4px;font-size:.75rem">Tap items you already have to update total</div>`;
+document.getElementById('copyBtn').textContent=`📋 Copy List · $${total.toFixed(2)} est.`;
+}
+
+function setLV(v,b){slv=v;document.querySelectorAll('.ltb').forEach(x=>x.classList.remove('act'));b.classList.add('act');rSC()}
+
+function copyList(){
+const items=window._shopData||[];
+let t=items.filter(i=>!haveItems.has(i.name)).map(i=>{
+let a;if(typeof i.displayAmt==='string')a=i.displayAmt;else a=fA(i.displayAmt)+(i.displayUnit?' '+i.displayUnit:'');
+return`${a} ${i.name}${i.price>0?' ($'+i.price.toFixed(2)+')':''}`}).join('\n');
+const skipped=items.filter(i=>haveItems.has(i.name));
+if(skipped.length)t+='\n\nAlready have:\n'+skipped.map(i=>i.name).join(', ');
+if(customItems.length)t+='\n\nOther:\n'+customItems.join('\n');
+const total=getShopTotal();
+t+='\n\nEstimated Total: $'+total.toFixed(2);
+navigator.clipboard.writeText('🛒 Shopping List:\n'+t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='✅ Copied!';setTimeout(()=>b.textContent='📋 Copy List · $'+total.toFixed(2)+' est.',2000)})}
+
+function goBack(){cv='list';document.getElementById('listView').classList.remove('hidden');document.getElementById('detailView').style.display='none';document.getElementById('shopView').style.display='none';document.getElementById('backBtn').style.display='none';document.getElementById('shopBtn').style.display='';document.getElementById('shopBtn').classList.remove('active');window.scrollTo(0,0)}
+
+rT();rG();
+</script>
+</body>
+</html>
